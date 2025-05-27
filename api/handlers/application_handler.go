@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
 	"strconv"
 
@@ -10,6 +11,20 @@ import (
 	"github.com/ONEST-Network/scheme-manager-adapter/pkg/validator"
 	"github.com/gin-gonic/gin"
 )
+
+// ApplicationRepositoryInterface defines the interface for application repository
+type ApplicationRepositoryInterface interface {
+	Create(app *application.Application) error
+	GetBySchemeID(schemeID int) ([]application.Application, error)
+	GetByID(id int) (*application.Application, error)
+	UpdateStatus(id int, status string) error
+	Delete(id int) error
+}
+
+// SchemeRepositoryInterface defines the interface for scheme repository
+type SchemeRepositoryInterface interface {
+	GetByID(id int) (*scheme.Scheme, error)
+}
 
 // ApplicationHandler handles application-related requests
 type ApplicationHandler struct {
@@ -26,6 +41,8 @@ func NewApplicationHandler(base *BaseHandler) *ApplicationHandler {
 		schemeRepo:  scheme.NewRepository(base.DB),
 	}
 }
+
+
 
 // Create creates a new application
 // @Summary Create a new application
@@ -44,6 +61,7 @@ func (h *ApplicationHandler) Create(c *gin.Context) {
 	schemeIdStr := c.Param("scheme_id")
 	schemeId, err := strconv.Atoi(schemeIdStr)
 	if err != nil {
+		log.Printf("Error converting scheme_id to int: %v, scheme_id: %s", err, schemeIdStr)
 		ErrorResponse(c, http.StatusBadRequest, "Invalid scheme ID", err)
 		return
 	}
@@ -51,12 +69,14 @@ func (h *ApplicationHandler) Create(c *gin.Context) {
 	// Retrieve the scheme details
 	scheme, err := h.schemeRepo.GetByID(c.Request.Context(), schemeId)
 	if err != nil {
+		log.Printf("Error retrieving scheme by ID: %v, scheme_id: %d", err, schemeId)
 		ErrorResponse(c, http.StatusNotFound, "Scheme not found", err)
 		return
 	}
 
 	var req application.CreateApplicationRequest
 	if err := c.ShouldBindJSON(&req); err != nil {
+		log.Printf("Error binding JSON request: %v", err)
 		ErrorResponse(c, http.StatusBadRequest, "Invalid request", err)
 		return
 	}
@@ -67,6 +87,7 @@ func (h *ApplicationHandler) Create(c *gin.Context) {
 		req.ApplicantCredentials,
 	)
 	if err != nil {
+		log.Printf("Error validating eligibility: %v, scheme_id: %d", err, schemeId)
 		ErrorResponse(c, http.StatusBadRequest, "Failed to validate eligibility", err)
 		return
 	}
@@ -74,6 +95,7 @@ func (h *ApplicationHandler) Create(c *gin.Context) {
 	// Convert eligibility details to JSON
 	eligibilityDetails, err := json.Marshal(eligibilityResult.Details)
 	if err != nil {
+		log.Printf("Error marshaling eligibility details: %v", err)
 		ErrorResponse(c, http.StatusInternalServerError, "Failed to process eligibility details", err)
 		return
 	}
@@ -87,6 +109,7 @@ func (h *ApplicationHandler) Create(c *gin.Context) {
 		eligibilityDetails,
 	)
 	if err != nil {
+		log.Printf("Error creating application: %v, scheme_id: %d", err, schemeId)
 		ErrorResponse(c, http.StatusInternalServerError, "Failed to create application", err)
 		return
 	}
@@ -108,12 +131,14 @@ func (h *ApplicationHandler) GetByID(c *gin.Context) {
 	idStr := c.Param("id")
 	id, err := strconv.Atoi(idStr)
 	if err != nil {
+		log.Printf("Error converting application id to int: %v, id: %s", err, idStr)
 		ErrorResponse(c, http.StatusBadRequest, "Invalid application ID", err)
 		return
 	}
 
 	app, err := h.appRepo.GetByID(c.Request.Context(), id)
 	if err != nil {
+		log.Printf("Error retrieving application by ID: %v, id: %d", err, id)
 		ErrorResponse(c, http.StatusNotFound, "Application not found", err)
 		return
 	}
@@ -135,12 +160,14 @@ func (h *ApplicationHandler) ListByScheme(c *gin.Context) {
 	schemeIdStr := c.Param("scheme_id")
 	schemeId, err := strconv.Atoi(schemeIdStr)
 	if err != nil {
+		log.Printf("Error converting scheme_id to int: %v, scheme_id: %s", err, schemeIdStr)
 		ErrorResponse(c, http.StatusBadRequest, "Invalid scheme ID", err)
 		return
 	}
 
 	apps, err := h.appRepo.ListByScheme(c.Request.Context(), schemeId)
 	if err != nil {
+		log.Printf("Error listing applications by scheme: %v, scheme_id: %d", err, schemeId)
 		ErrorResponse(c, http.StatusInternalServerError, "Failed to list applications", err)
 		return
 	}
@@ -165,18 +192,21 @@ func (h *ApplicationHandler) UpdateStatus(c *gin.Context) {
 	idStr := c.Param("id")
 	id, err := strconv.Atoi(idStr)
 	if err != nil {
+		log.Printf("Error converting application id to int: %v, id: %s", err, idStr)
 		ErrorResponse(c, http.StatusBadRequest, "Invalid application ID", err)
 		return
 	}
 
 	var req application.UpdateApplicationStatusRequest
 	if err := c.ShouldBindJSON(&req); err != nil {
+		log.Printf("Error binding JSON request: %v", err)
 		ErrorResponse(c, http.StatusBadRequest, "Invalid request", err)
 		return
 	}
 
 	app, err := h.appRepo.UpdateStatus(c.Request.Context(), id, req.Status)
 	if err != nil {
+		log.Printf("Error updating application status: %v, id: %d, status: %s", err, id, req.Status)
 		ErrorResponse(c, http.StatusInternalServerError, "Failed to update application status", err)
 		return
 	}
@@ -199,12 +229,14 @@ func (h *ApplicationHandler) Delete(c *gin.Context) {
 	idStr := c.Param("id")
 	id, err := strconv.Atoi(idStr)
 	if err != nil {
+		log.Printf("Error converting application id to int: %v, id: %s", err, idStr)
 		ErrorResponse(c, http.StatusBadRequest, "Invalid application ID", err)
 		return
 	}
 
 	err = h.appRepo.Delete(c.Request.Context(), id)
 	if err != nil {
+		log.Printf("Error deleting application: %v, id: %d", err, id)
 		ErrorResponse(c, http.StatusInternalServerError, "Failed to delete application", err)
 		return
 	}

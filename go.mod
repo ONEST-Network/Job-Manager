@@ -1,6 +1,6 @@
 module github.com/ONEST-Network/scheme-manager-adapter
 
-go 1.21
+go 1.24
 
 require (
 	github.com/gin-contrib/cors v1.5.0
