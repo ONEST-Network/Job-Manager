@@ -33,8 +33,6 @@ func InitDB(ctx context.Context, cfg *config.Config) (*pgxpool.Pool, error) {
 		return nil, fmt.Errorf("unable to ping database: %v", err)
 	}
 
-	// log.Info("Connected to database successfully")
-
 	// Initialize database tables
 	if err := initTables(ctx, dbpool); err != nil {
 		return nil, fmt.Errorf("failed to initialize database tables: %v", err)
