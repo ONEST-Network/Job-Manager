@@ -100,6 +100,5 @@ func initTables(ctx context.Context, db *pgxpool.Pool) error {
 		return fmt.Errorf("failed to create applications table: %v", err)
 	}
 
-	// log.Info("Database tables initialized successfully")
 	return nil
 }
