@@ -3,72 +3,77 @@ package routes
 import (
 	"github.com/ONEST-Network/scheme-manager-adapter/api/handlers"
 	"github.com/ONEST-Network/scheme-manager-adapter/api/middleware"
-	"github.com/ONEST-Network/scheme-manager-adapter/pkg/config"
 	"github.com/gin-gonic/gin"
-	"github.com/jackc/pgx/v5/pgxpool"
 )
 
-// SetupRouter sets up the API routes
-func SetupRouter(db *pgxpool.Pool, cfg *config.Config) *gin.Engine {
-	r := gin.Default()
+// SetupRouter configures all routes for the application
+func SetupRouter(baseHandler *handlers.BaseHandler) *gin.Engine {
+	router := gin.Default()
 
-	// Apply middleware
-	r.Use(middleware.CORSMiddleware())
-	r.Use(middleware.LoggerMiddleware())
+	// Add middleware
+	router.Use(middleware.CORSMiddleware())
+	router.Use(middleware.LoggerMiddleware())
 
-	// Create base handler
-	baseHandler := handlers.NewBaseHandler(db, cfg)
+	// API version 1
+	v1 := router.Group("/api/v1")
 
-	// Create specific handlers
+	// Initialize handlers
 	orgHandler := handlers.NewOrganizationHandler(baseHandler)
 	schemeHandler := handlers.NewSchemeHandler(baseHandler)
 	appHandler := handlers.NewApplicationHandler(baseHandler)
+	
+	setupOrganizationRoutes(v1, orgHandler)
+	setupSchemeRoutes(v1, schemeHandler)
+	setupApplicationRoutes(v1, appHandler)
 
-	// API v1 group
-	v1 := r.Group("/api/v1")
+	return router
+}
+
+// setupOrganizationRoutes configures all organization-related routes
+func setupOrganizationRoutes(v1 *gin.RouterGroup, orgHandler *handlers.OrganizationHandler) {
+	orgs := v1.Group("/organizations")
 	{
-		// Organization routes
-		orgs := v1.Group("/organizations")
-		{
-			orgs.POST("", orgHandler.Create)
-			orgs.GET("", orgHandler.List)
-			orgs.GET("/:id", orgHandler.GetByID)
-			orgs.GET("/api-key/:api_key", orgHandler.GetByAPIKey)
-			orgs.PUT("/:id", orgHandler.Update)
-			orgs.DELETE("/:id", orgHandler.Delete)
-		}
-
-		// Organization-specific schemes - use a different URL pattern to avoid conflicts
-		orgSchemes := v1.Group("/org-schemes")
-		{
-			orgSchemes.POST("/:org_id", schemeHandler.Create)
-			orgSchemes.GET("/:org_id", schemeHandler.ListByOrganization)
-			orgSchemes.GET("/:org_id/:scheme_id", schemeHandler.GetBySchemeID)
-		}
-
-		// Standalone scheme routes
-		schemes := v1.Group("/schemes")
-		{
-			schemes.GET("/:id", schemeHandler.GetBySchemeID)
-			schemes.PUT("/:id/status", schemeHandler.UpdateStatus)
-			schemes.DELETE("/:id", schemeHandler.Delete)
-		}
-
-		// Scheme-specific applications - use a different URL pattern to avoid conflicts
-		schemeApps := v1.Group("/scheme-applications")
-		{
-			schemeApps.POST("/:scheme_id", appHandler.Create)
-			schemeApps.GET("/:scheme_id", appHandler.ListByScheme)
-		}
-
-		// Standalone application routes
-		apps := v1.Group("/applications")
-		{
-			apps.GET("/:id", appHandler.GetByID)
-			apps.PUT("/:id/status", appHandler.UpdateStatus)
-			apps.DELETE("/:id", appHandler.Delete)
-		}
+		orgs.POST("", orgHandler.Create)
+		orgs.GET("", orgHandler.List)
+		orgs.GET("/:id", orgHandler.GetByID)
+		orgs.GET("/api-key/:api_key", orgHandler.GetByAPIKey)
+		orgs.PUT("/:id", orgHandler.Update)
+		orgs.DELETE("/:id", orgHandler.Delete)
 	}
 
-	return r
+	// Organization-specific scheme routes
+	orgSchemes := v1.Group("/org-schemes")
+	{
+		orgSchemes.POST("/:org_id", orgHandler.CreateScheme)
+		orgSchemes.GET("/:org_id", orgHandler.ListSchemes)
+		orgSchemes.GET("/:org_id/:scheme_id", orgHandler.GetScheme)
+	}
+}
+
+// setupSchemeRoutes configures all scheme-related routes
+func setupSchemeRoutes(v1 *gin.RouterGroup, schemeHandler *handlers.SchemeHandler) {
+	schemes := v1.Group("/schemes")
+	{
+		schemes.GET("/:id", schemeHandler.GetByID)
+		schemes.PUT("/:id/status", schemeHandler.UpdateStatus)
+		schemes.DELETE("/:id", schemeHandler.Delete)
+	}
+}
+
+// setupApplicationRoutes configures all application-related routes
+func setupApplicationRoutes(v1 *gin.RouterGroup, appHandler *handlers.ApplicationHandler) {
+	// Scheme-specific application routes
+	schemeApps := v1.Group("/scheme-applications")
+	{
+		schemeApps.POST("/:scheme_id", appHandler.Create)
+		schemeApps.GET("/:scheme_id", appHandler.GetByScheme)
+	}
+
+	// General application routes
+	applications := v1.Group("/applications")
+	{
+		applications.GET("/:id", appHandler.GetByID)
+		applications.PUT("/:id/status", appHandler.UpdateStatus)
+		applications.DELETE("/:id", appHandler.Delete)
+	}
 }
