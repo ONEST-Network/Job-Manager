@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"encoding/json"
-	"log"
 	"net/http"
 	"strconv"
 
@@ -10,6 +9,7 @@ import (
 	"github.com/ONEST-Network/scheme-manager-adapter/pkg/database/postgres/scheme"
 	"github.com/ONEST-Network/scheme-manager-adapter/pkg/validator"
 	"github.com/gin-gonic/gin"
+	"github.com/sirupsen/logrus"
 )
 
 // ApplicationRepositoryInterface defines the interface for application repository
@@ -42,8 +42,6 @@ func NewApplicationHandler(base *BaseHandler) *ApplicationHandler {
 	}
 }
 
-
-
 // Create creates a new application
 // @Summary Create a new application
 // @Description Create a new application with the given details and validate eligibility
@@ -61,7 +59,10 @@ func (h *ApplicationHandler) Create(c *gin.Context) {
 	schemeIdStr := c.Param("scheme_id")
 	schemeId, err := strconv.Atoi(schemeIdStr)
 	if err != nil {
-		log.Printf("Error converting scheme_id to int: %v, scheme_id: %s", err, schemeIdStr)
+		logrus.WithFields(logrus.Fields{
+			"error":     err,
+			"scheme_id": schemeIdStr,
+		}).Error("Error converting scheme_id to int")
 		ErrorResponse(c, http.StatusBadRequest, "Invalid scheme ID", err)
 		return
 	}
@@ -69,14 +70,17 @@ func (h *ApplicationHandler) Create(c *gin.Context) {
 	// Retrieve the scheme details
 	scheme, err := h.schemeRepo.GetByID(c.Request.Context(), schemeId)
 	if err != nil {
-		log.Printf("Error retrieving scheme by ID: %v, scheme_id: %d", err, schemeId)
+		logrus.WithFields(logrus.Fields{
+			"error":     err,
+			"scheme_id": schemeId,
+		}).Error("Error retrieving scheme by ID")
 		ErrorResponse(c, http.StatusNotFound, "Scheme not found", err)
 		return
 	}
 
 	var req application.CreateApplicationRequest
 	if err := c.ShouldBindJSON(&req); err != nil {
-		log.Printf("Error binding JSON request: %v", err)
+		logrus.WithError(err).Error("Error binding JSON request")
 		ErrorResponse(c, http.StatusBadRequest, "Invalid request", err)
 		return
 	}
@@ -87,7 +91,10 @@ func (h *ApplicationHandler) Create(c *gin.Context) {
 		req.ApplicantCredentials,
 	)
 	if err != nil {
-		log.Printf("Error validating eligibility: %v, scheme_id: %d", err, schemeId)
+		logrus.WithFields(logrus.Fields{
+			"error":     err,
+			"scheme_id": schemeId,
+		}).Error("Error validating eligibility")
 		ErrorResponse(c, http.StatusBadRequest, "Failed to validate eligibility", err)
 		return
 	}
@@ -95,7 +102,7 @@ func (h *ApplicationHandler) Create(c *gin.Context) {
 	// Convert eligibility details to JSON
 	eligibilityDetails, err := json.Marshal(eligibilityResult.Details)
 	if err != nil {
-		log.Printf("Error marshaling eligibility details: %v", err)
+		logrus.WithError(err).Error("Error marshaling eligibility details")
 		ErrorResponse(c, http.StatusInternalServerError, "Failed to process eligibility details", err)
 		return
 	}
@@ -109,7 +116,10 @@ func (h *ApplicationHandler) Create(c *gin.Context) {
 		eligibilityDetails,
 	)
 	if err != nil {
-		log.Printf("Error creating application: %v, scheme_id: %d", err, schemeId)
+		logrus.WithFields(logrus.Fields{
+			"error":     err,
+			"scheme_id": schemeId,
+		}).Error("Error creating application")
 		ErrorResponse(c, http.StatusInternalServerError, "Failed to create application", err)
 		return
 	}
@@ -131,14 +141,20 @@ func (h *ApplicationHandler) GetByID(c *gin.Context) {
 	idStr := c.Param("id")
 	id, err := strconv.Atoi(idStr)
 	if err != nil {
-		log.Printf("Error converting application id to int: %v, id: %s", err, idStr)
+		logrus.WithFields(logrus.Fields{
+			"error": err,
+			"id":    idStr,
+		}).Error("Error converting application id to int")
 		ErrorResponse(c, http.StatusBadRequest, "Invalid application ID", err)
 		return
 	}
 
 	app, err := h.appRepo.GetByID(c.Request.Context(), id)
 	if err != nil {
-		log.Printf("Error retrieving application by ID: %v, id: %d", err, id)
+		logrus.WithFields(logrus.Fields{
+			"error": err,
+			"id":    id,
+		}).Error("Error retrieving application by ID")
 		ErrorResponse(c, http.StatusNotFound, "Application not found", err)
 		return
 	}
@@ -160,14 +176,20 @@ func (h *ApplicationHandler) ListByScheme(c *gin.Context) {
 	schemeIdStr := c.Param("scheme_id")
 	schemeId, err := strconv.Atoi(schemeIdStr)
 	if err != nil {
-		log.Printf("Error converting scheme_id to int: %v, scheme_id: %s", err, schemeIdStr)
+		logrus.WithFields(logrus.Fields{
+			"error":     err,
+			"scheme_id": schemeIdStr,
+		}).Error("Error converting scheme_id to int")
 		ErrorResponse(c, http.StatusBadRequest, "Invalid scheme ID", err)
 		return
 	}
 
 	apps, err := h.appRepo.ListByScheme(c.Request.Context(), schemeId)
 	if err != nil {
-		log.Printf("Error listing applications by scheme: %v, scheme_id: %d", err, schemeId)
+		logrus.WithFields(logrus.Fields{
+			"error":     err,
+			"scheme_id": schemeId,
+		}).Error("Error listing applications by scheme")
 		ErrorResponse(c, http.StatusInternalServerError, "Failed to list applications", err)
 		return
 	}
@@ -192,21 +214,28 @@ func (h *ApplicationHandler) UpdateStatus(c *gin.Context) {
 	idStr := c.Param("id")
 	id, err := strconv.Atoi(idStr)
 	if err != nil {
-		log.Printf("Error converting application id to int: %v, id: %s", err, idStr)
+		logrus.WithFields(logrus.Fields{
+			"error": err,
+			"id":    idStr,
+		}).Error("Error converting application id to int")
 		ErrorResponse(c, http.StatusBadRequest, "Invalid application ID", err)
 		return
 	}
 
 	var req application.UpdateApplicationStatusRequest
 	if err := c.ShouldBindJSON(&req); err != nil {
-		log.Printf("Error binding JSON request: %v", err)
+		logrus.WithError(err).Error("Error binding JSON request")
 		ErrorResponse(c, http.StatusBadRequest, "Invalid request", err)
 		return
 	}
 
 	app, err := h.appRepo.UpdateStatus(c.Request.Context(), id, req.Status)
 	if err != nil {
-		log.Printf("Error updating application status: %v, id: %d, status: %s", err, id, req.Status)
+		logrus.WithFields(logrus.Fields{
+			"error":  err,
+			"id":     id,
+			"status": req.Status,
+		}).Error("Error updating application status")
 		ErrorResponse(c, http.StatusInternalServerError, "Failed to update application status", err)
 		return
 	}
@@ -229,14 +258,20 @@ func (h *ApplicationHandler) Delete(c *gin.Context) {
 	idStr := c.Param("id")
 	id, err := strconv.Atoi(idStr)
 	if err != nil {
-		log.Printf("Error converting application id to int: %v, id: %s", err, idStr)
+		logrus.WithFields(logrus.Fields{
+			"error": err,
+			"id":    idStr,
+		}).Error("Error converting application id to int")
 		ErrorResponse(c, http.StatusBadRequest, "Invalid application ID", err)
 		return
 	}
 
 	err = h.appRepo.Delete(c.Request.Context(), id)
 	if err != nil {
-		log.Printf("Error deleting application: %v, id: %d", err, id)
+		logrus.WithFields(logrus.Fields{
+			"error": err,
+			"id":    id,
+		}).Error("Error deleting application")
 		ErrorResponse(c, http.StatusInternalServerError, "Failed to delete application", err)
 		return
 	}
