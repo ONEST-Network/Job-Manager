@@ -1,0 +1,4383 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/business/add": {
+            "post": {
+                "description": "Add a business",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Business"
+                ],
+                "summary": "Add business",
+                "parameters": [
+                    {
+                        "description": "request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/business.AddBusinessRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/business/{id}/jobs": {
+            "get": {
+                "description": "List jobs for a business",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Business"
+                ],
+                "summary": "List Jobs",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/business.ListJobsResponse"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/cancel": {
+            "post": {
+                "description": "Cancel job application",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "ONEST Network"
+                ],
+                "summary": "Cancel job application",
+                "parameters": [
+                    {
+                        "description": "request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.CancelRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.CancelResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/confirm": {
+            "post": {
+                "description": "Confirm job application submission",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "ONEST Network"
+                ],
+                "summary": "Confirm job application submission",
+                "parameters": [
+                    {
+                        "description": "request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.ConfirmRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.ConfirmResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/init": {
+            "post": {
+                "description": "Initialize job application",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "ONEST Network"
+                ],
+                "summary": "Initialize job application",
+                "parameters": [
+                    {
+                        "description": "request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.InitRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.InitResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/job-application/{id}/status": {
+            "post": {
+                "description": "Update a job application's status",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Job Application"
+                ],
+                "summary": "Update job application status",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Job Application ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/jobapplication.UpdateJobApplicationStatusRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/job/create": {
+            "post": {
+                "description": "Create a job posting",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Job"
+                ],
+                "summary": "Create job",
+                "parameters": [
+                    {
+                        "description": "request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/job.CreateJobRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/job/{id}/applications": {
+            "get": {
+                "description": "Get job applications",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Job"
+                ],
+                "summary": "Get job applications",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Job ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/job.GetJobApplicationsResponse"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/search": {
+            "post": {
+                "description": "Send jobs",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "ONEST Network"
+                ],
+                "summary": "Send jobs",
+                "parameters": [
+                    {
+                        "description": "request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.SearchRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.SearchResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/select": {
+            "post": {
+                "description": "Send job fulfillment",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "ONEST Network"
+                ],
+                "summary": "Send job fulfillment",
+                "parameters": [
+                    {
+                        "description": "request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.SelectRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.SelectResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/status": {
+            "post": {
+                "description": "Send job application current status",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "ONEST Network"
+                ],
+                "summary": "Send job application current status",
+                "parameters": [
+                    {
+                        "description": "request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.StatusRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.StatusResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "business.AddBusinessRequest": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "gstIndexNumber": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "industry": {
+                    "$ref": "#/definitions/business.Industry"
+                },
+                "location": {
+                    "$ref": "#/definitions/business.Location"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "pictureUrls": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "business.Coordinates": {
+            "type": "object",
+            "properties": {
+                "coordinates": {
+                    "description": "longitude, latitude",
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    }
+                },
+                "type": {
+                    "description": "GeoJSON type, it shall be equal to 'Point'",
+                    "type": "string"
+                }
+            }
+        },
+        "business.Industry": {
+            "type": "string",
+            "enum": [
+                "RetailAndEcommerce",
+                "FoodAndBeverages",
+                "HealthAndWellness",
+                "EducationAndTraining",
+                "ProfessionalServices",
+                "Manufacturing",
+                "HospitalityAndTourism",
+                "ArtsAndEntertainment",
+                "TechnologyAndSoftware",
+                "ConstructionAndRealEstate",
+                "TransportationAndLogistics",
+                "AgricultureAndFarming",
+                "FinanceAndInsurance",
+                "EnergyAndUtilities",
+                "NonProfitAndSocialEnterprise",
+                "MediaAndPublishing",
+                "Automotive",
+                "FashionAndLifestyle",
+                "SportsAndRecreation",
+                "Other"
+            ],
+            "x-enum-varnames": [
+                "IndustryRetailAndEcommerce",
+                "IndustryFoodAndBeverages",
+                "IndustryHealthAndWellness",
+                "IndustryEducationAndTraining",
+                "IndustryProfessionalServices",
+                "IndustryManufacturing",
+                "IndustryHospitalityAndTourism",
+                "IndustryArtsAndEntertainment",
+                "IndustryTechnologyAndSoftware",
+                "IndustryConstructionAndRealEstate",
+                "IndustryTransportationAndLogistics",
+                "IndustryAgricultureAndFarming",
+                "IndustryFinanceAndInsurance",
+                "IndustryEnergyAndUtilities",
+                "IndustryNonProfitAndSocialEnterprise",
+                "IndustryMediaAndPublishing",
+                "IndustryAutomotive",
+                "IndustryFashionAndLifestyle",
+                "IndustrySportsAndRecreation",
+                "IndustryOther"
+            ]
+        },
+        "business.ListJobsResponse": {
+            "type": "object",
+            "properties": {
+                "applicationIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "description": {
+                    "type": "string"
+                },
+                "eligibility": {
+                    "$ref": "#/definitions/job.Eligibility"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "location": {
+                    "$ref": "#/definitions/job.Location"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "salaryRange": {
+                    "$ref": "#/definitions/job.SalaryRange"
+                },
+                "type": {
+                    "$ref": "#/definitions/job.JobType"
+                },
+                "vacancies": {
+                    "type": "integer"
+                },
+                "workDays": {
+                    "$ref": "#/definitions/job.WorkDays"
+                },
+                "workHours": {
+                    "$ref": "#/definitions/job.WorkHours"
+                }
+            }
+        },
+        "business.Location": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "areaCode": {
+                    "description": "Postal code, for example: '560102'",
+                    "type": "string"
+                },
+                "city": {
+                    "description": "STD code, for example: 'std:080'",
+                    "type": "string"
+                },
+                "coordinates": {
+                    "$ref": "#/definitions/business.Coordinates"
+                },
+                "state": {
+                    "description": "State code, for example: 'IN-KA'",
+                    "type": "string"
+                },
+                "street": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_database_mongodb_job-application.ApplicantDetails": {
+            "type": "object",
+            "properties": {
+                "age": {
+                    "type": "integer"
+                },
+                "documents": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_database_mongodb_job-application.Documents"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "experience": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_database_mongodb_job-application.Experience"
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_database_mongodb_job-application.Document": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_database_mongodb_job-application.Documents": {
+            "type": "object",
+            "properties": {
+                "aadharCard": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_database_mongodb_job-application.Document"
+                },
+                "drivingLicense": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_database_mongodb_job-application.Document"
+                },
+                "panCard": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_database_mongodb_job-application.Document"
+                },
+                "passport": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_database_mongodb_job-application.Document"
+                },
+                "resume": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_database_mongodb_job-application.Document"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_database_mongodb_job-application.Experience": {
+            "type": "object",
+            "properties": {
+                "years": {
+                    "type": "integer"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_request.City": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_request.Context": {
+            "type": "object",
+            "properties": {
+                "action": {
+                    "type": "string"
+                },
+                "bap_id": {
+                    "type": "string"
+                },
+                "bap_uri": {
+                    "type": "string"
+                },
+                "bpp_id": {
+                    "type": "string"
+                },
+                "bpp_uri": {
+                    "type": "string"
+                },
+                "domain": {
+                    "type": "string"
+                },
+                "location": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_request.Location"
+                },
+                "message_id": {
+                    "type": "string"
+                },
+                "timestamp": {
+                    "type": "string"
+                },
+                "transaction_id": {
+                    "type": "string"
+                },
+                "ttl": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_request.Country": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_request.Location": {
+            "type": "object",
+            "properties": {
+                "city": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_request.City"
+                },
+                "country": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_request.Country"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_request.Message": {
+            "type": "object",
+            "properties": {
+                "cancellation_reason_id": {
+                    "type": "string"
+                },
+                "order_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Breakup": {
+            "type": "object",
+            "properties": {
+                "item": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Item"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.City": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Context": {
+            "type": "object",
+            "properties": {
+                "action": {
+                    "type": "string"
+                },
+                "bap_id": {
+                    "type": "string"
+                },
+                "bap_uri": {
+                    "type": "string"
+                },
+                "bpp_id": {
+                    "type": "string"
+                },
+                "bpp_uri": {
+                    "type": "string"
+                },
+                "domain": {
+                    "type": "string"
+                },
+                "location": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Location"
+                },
+                "message_id": {
+                    "type": "string"
+                },
+                "timestamp": {
+                    "type": "string"
+                },
+                "transaction_id": {
+                    "type": "string"
+                },
+                "ttl": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Country": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Descriptor": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Fulfillments": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "state": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.State"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Tags"
+                    }
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Item": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "price": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Price"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Items": {
+            "type": "object",
+            "properties": {
+                "fulfillment_ids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "id": {
+                    "type": "string"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Tags"
+                    }
+                },
+                "time": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.List": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Location": {
+            "type": "object",
+            "properties": {
+                "city": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.City"
+                },
+                "country": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Country"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Message": {
+            "type": "object",
+            "properties": {
+                "order": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Order"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Order": {
+            "type": "object",
+            "properties": {
+                "fulfillments": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Fulfillments"
+                    }
+                },
+                "id": {
+                    "type": "string"
+                },
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Items"
+                    }
+                },
+                "payments": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Payments"
+                    }
+                },
+                "provider": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Provider"
+                },
+                "quote": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Quote"
+                },
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Params": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "string"
+                },
+                "currency": {
+                    "type": "string"
+                },
+                "transaction_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Payments": {
+            "type": "object",
+            "properties": {
+                "collected_by": {
+                    "type": "string"
+                },
+                "params": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Params"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "tags": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Tags"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Price": {
+            "type": "object",
+            "properties": {
+                "currency": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Provider": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Quote": {
+            "type": "object",
+            "properties": {
+                "breakup": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Breakup"
+                    }
+                },
+                "price": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Price"
+                },
+                "ttl": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.State": {
+            "type": "object",
+            "properties": {
+                "descriptor": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Descriptor"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Tags": {
+            "type": "object",
+            "properties": {
+                "descriptor": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Descriptor"
+                },
+                "list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.List"
+                    }
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.City": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Contact": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Context": {
+            "type": "object",
+            "properties": {
+                "action": {
+                    "type": "string"
+                },
+                "bap_id": {
+                    "type": "string"
+                },
+                "bap_uri": {
+                    "type": "string"
+                },
+                "bpp_id": {
+                    "type": "string"
+                },
+                "bpp_uri": {
+                    "type": "string"
+                },
+                "domain": {
+                    "type": "string"
+                },
+                "location": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Location"
+                },
+                "message_id": {
+                    "type": "string"
+                },
+                "timestamp": {
+                    "type": "string"
+                },
+                "transaction_id": {
+                    "type": "string"
+                },
+                "ttl": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Country": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Creds": {
+            "type": "object",
+            "properties": {
+                "descriptor": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.CredsDescriptor"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.CredsDescriptor": {
+            "type": "object",
+            "properties": {
+                "long_desc": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "short_desc": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Customer": {
+            "type": "object",
+            "properties": {
+                "contact": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Contact"
+                },
+                "person": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Person"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Fulfillments": {
+            "type": "object",
+            "properties": {
+                "customer": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Customer"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "state": {
+                    "$ref": "#/definitions/request.State"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Item": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "price": {
+                    "$ref": "#/definitions/request.Price"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Items": {
+            "type": "object",
+            "properties": {
+                "fulfillment_ids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "id": {
+                    "type": "string"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Tags"
+                    }
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Languages": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.List": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Location": {
+            "type": "object",
+            "properties": {
+                "city": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.City"
+                },
+                "country": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Country"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Message": {
+            "type": "object",
+            "properties": {
+                "order": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Order"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Order": {
+            "type": "object",
+            "properties": {
+                "fulfillments": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Fulfillments"
+                    }
+                },
+                "id": {
+                    "type": "string"
+                },
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Items"
+                    }
+                },
+                "payments": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/request.Payments"
+                    }
+                },
+                "provider": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Provider"
+                },
+                "quote": {
+                    "$ref": "#/definitions/request.Quote"
+                },
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Person": {
+            "type": "object",
+            "properties": {
+                "age": {
+                    "type": "string"
+                },
+                "creds": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Creds"
+                    }
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "languages": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Languages"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "skills": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Skills"
+                    }
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Provider": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Skills": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Tags": {
+            "type": "object",
+            "properties": {
+                "descriptor": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.TagsDescriptor"
+                },
+                "list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.List"
+                    }
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.TagsDescriptor": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Breakup": {
+            "type": "object",
+            "properties": {
+                "item": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Item"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.City": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Contact": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Context": {
+            "type": "object",
+            "properties": {
+                "action": {
+                    "type": "string"
+                },
+                "bap_id": {
+                    "type": "string"
+                },
+                "bap_uri": {
+                    "type": "string"
+                },
+                "bpp_id": {
+                    "type": "string"
+                },
+                "bpp_uri": {
+                    "type": "string"
+                },
+                "domain": {
+                    "type": "string"
+                },
+                "location": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Location"
+                },
+                "message_id": {
+                    "type": "string"
+                },
+                "timestamp": {
+                    "type": "string"
+                },
+                "transaction_id": {
+                    "type": "string"
+                },
+                "ttl": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Country": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Creds": {
+            "type": "object",
+            "properties": {
+                "descriptor": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.CredsDescriptor"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.CredsDescriptor": {
+            "type": "object",
+            "properties": {
+                "long_desc": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "short_desc": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Customer": {
+            "type": "object",
+            "properties": {
+                "contact": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Contact"
+                },
+                "person": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Person"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Fulfillments": {
+            "type": "object",
+            "properties": {
+                "customer": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Customer"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "state": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.State"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Item": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "price": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Price"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Items": {
+            "type": "object",
+            "properties": {
+                "fulfillment_ids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "id": {
+                    "type": "string"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Tags"
+                    }
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Languages": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.List": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Location": {
+            "type": "object",
+            "properties": {
+                "city": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.City"
+                },
+                "country": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Country"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Message": {
+            "type": "object",
+            "properties": {
+                "order": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Order"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Order": {
+            "type": "object",
+            "properties": {
+                "fulfillments": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Fulfillments"
+                    }
+                },
+                "id": {
+                    "type": "string"
+                },
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Items"
+                    }
+                },
+                "payments": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Payments"
+                    }
+                },
+                "provider": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Provider"
+                },
+                "quote": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Quote"
+                },
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Params": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "string"
+                },
+                "currency": {
+                    "type": "string"
+                },
+                "transaction_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Payments": {
+            "type": "object",
+            "properties": {
+                "collected_by": {
+                    "type": "string"
+                },
+                "params": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Params"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "tags": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Tags"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Person": {
+            "type": "object",
+            "properties": {
+                "age": {
+                    "type": "string"
+                },
+                "creds": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Creds"
+                    }
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "languages": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Languages"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "skills": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Skills"
+                    }
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Price": {
+            "type": "object",
+            "properties": {
+                "currency": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Provider": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Quote": {
+            "type": "object",
+            "properties": {
+                "breakup": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Breakup"
+                    }
+                },
+                "price": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Price"
+                },
+                "ttl": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Skills": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.State": {
+            "type": "object",
+            "properties": {
+                "descriptor": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.StateDescriptor"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.StateDescriptor": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Tags": {
+            "type": "object",
+            "properties": {
+                "descriptor": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.TagsDescriptor"
+                },
+                "list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.List"
+                    }
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.TagsDescriptor": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.City": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Contact": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Context": {
+            "type": "object",
+            "properties": {
+                "action": {
+                    "type": "string"
+                },
+                "bap_id": {
+                    "type": "string"
+                },
+                "bap_uri": {
+                    "type": "string"
+                },
+                "bpp_id": {
+                    "type": "string"
+                },
+                "bpp_uri": {
+                    "type": "string"
+                },
+                "domain": {
+                    "type": "string"
+                },
+                "location": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Location"
+                },
+                "message_id": {
+                    "type": "string"
+                },
+                "timestamp": {
+                    "type": "string"
+                },
+                "transaction_id": {
+                    "type": "string"
+                },
+                "ttl": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Country": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Creds": {
+            "type": "object",
+            "properties": {
+                "descriptor": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.CredsDescriptor"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.CredsDescriptor": {
+            "type": "object",
+            "properties": {
+                "long_desc": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "short_desc": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Customer": {
+            "type": "object",
+            "properties": {
+                "contact": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Contact"
+                },
+                "person": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Person"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Fulfillments": {
+            "type": "object",
+            "properties": {
+                "customer": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Customer"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Items": {
+            "type": "object",
+            "properties": {
+                "fulfillment_ids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "id": {
+                    "type": "string"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Tags"
+                    }
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Languages": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.List": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Location": {
+            "type": "object",
+            "properties": {
+                "city": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.City"
+                },
+                "country": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Country"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Message": {
+            "type": "object",
+            "properties": {
+                "order": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Order"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Order": {
+            "type": "object",
+            "properties": {
+                "fulfillments": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Fulfillments"
+                    }
+                },
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Items"
+                    }
+                },
+                "provider": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Provider"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Person": {
+            "type": "object",
+            "properties": {
+                "age": {
+                    "type": "string"
+                },
+                "creds": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Creds"
+                    }
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "languages": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Languages"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "skills": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Skills"
+                    }
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Tags"
+                    }
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Provider": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Skills": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Tags": {
+            "type": "object",
+            "properties": {
+                "descriptor": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.TagsDescriptor"
+                },
+                "list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.List"
+                    }
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.TagsDescriptor": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Breakup": {
+            "type": "object",
+            "properties": {
+                "item": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Item"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.City": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Contact": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Context": {
+            "type": "object",
+            "properties": {
+                "action": {
+                    "type": "string"
+                },
+                "bap_id": {
+                    "type": "string"
+                },
+                "bap_uri": {
+                    "type": "string"
+                },
+                "bpp_id": {
+                    "type": "string"
+                },
+                "bpp_uri": {
+                    "type": "string"
+                },
+                "domain": {
+                    "type": "string"
+                },
+                "location": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Location"
+                },
+                "message_id": {
+                    "type": "string"
+                },
+                "timestamp": {
+                    "type": "string"
+                },
+                "transaction_id": {
+                    "type": "string"
+                },
+                "ttl": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Country": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Creds": {
+            "type": "object",
+            "properties": {
+                "descriptor": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.CredsDescriptor"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.CredsDescriptor": {
+            "type": "object",
+            "properties": {
+                "long_desc": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "short_desc": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Customer": {
+            "type": "object",
+            "properties": {
+                "contact": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Contact"
+                },
+                "person": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Person"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Fulfillments": {
+            "type": "object",
+            "properties": {
+                "customer": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Customer"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "state": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.State"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Item": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "price": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Price"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Items": {
+            "type": "object",
+            "properties": {
+                "fulfillment_ids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "id": {
+                    "type": "string"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Tags"
+                    }
+                },
+                "xinput": {
+                    "$ref": "#/definitions/response.Xinput"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Languages": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.List": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Location": {
+            "type": "object",
+            "properties": {
+                "city": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.City"
+                },
+                "country": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Country"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Message": {
+            "type": "object",
+            "properties": {
+                "order": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Order"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Order": {
+            "type": "object",
+            "properties": {
+                "fulfillments": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Fulfillments"
+                    }
+                },
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Items"
+                    }
+                },
+                "payments": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Payments"
+                    }
+                },
+                "provider": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Provider"
+                },
+                "quote": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Quote"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Payments": {
+            "type": "object",
+            "properties": {
+                "collected_by": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "tags": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Tags"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Person": {
+            "type": "object",
+            "properties": {
+                "age": {
+                    "type": "string"
+                },
+                "creds": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Creds"
+                    }
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "languages": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Languages"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "skills": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Skills"
+                    }
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Price": {
+            "type": "object",
+            "properties": {
+                "currency": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Provider": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Quote": {
+            "type": "object",
+            "properties": {
+                "breakup": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Breakup"
+                    }
+                },
+                "price": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Price"
+                },
+                "ttl": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Skills": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.State": {
+            "type": "object",
+            "properties": {
+                "descriptor": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.StateDescriptor"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.StateDescriptor": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Tags": {
+            "type": "object",
+            "properties": {
+                "descriptor": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.TagsDescriptor"
+                },
+                "list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.List"
+                    }
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.TagsDescriptor": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.City": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.Context": {
+            "type": "object",
+            "properties": {
+                "action": {
+                    "type": "string"
+                },
+                "bap_id": {
+                    "type": "string"
+                },
+                "bap_uri": {
+                    "type": "string"
+                },
+                "domain": {
+                    "type": "string"
+                },
+                "location": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.Location"
+                },
+                "message_id": {
+                    "type": "string"
+                },
+                "timestamp": {
+                    "type": "string"
+                },
+                "transaction_id": {
+                    "type": "string"
+                },
+                "ttl": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.Country": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.Descriptor": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.Item": {
+            "type": "object",
+            "properties": {
+                "descriptor": {
+                    "$ref": "#/definitions/request.ItemDescriptor"
+                },
+                "item_tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/request.ItemTags"
+                    }
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.List": {
+            "type": "object",
+            "properties": {
+                "descriptor": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.TagsDescriptor"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.Location": {
+            "type": "object",
+            "properties": {
+                "city": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.City"
+                },
+                "country": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.Country"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.Message": {
+            "type": "object",
+            "properties": {
+                "intent": {
+                    "$ref": "#/definitions/request.Intent"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.Provider": {
+            "type": "object",
+            "properties": {
+                "descriptor": {
+                    "$ref": "#/definitions/request.ProviderDescriptor"
+                },
+                "locations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/request.ProviderLocations"
+                    }
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.Tags": {
+            "type": "object",
+            "properties": {
+                "descriptor": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.TagsDescriptor"
+                },
+                "list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.List"
+                    }
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.TagsDescriptor": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.City": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.Contact": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.Context": {
+            "type": "object",
+            "properties": {
+                "action": {
+                    "type": "string"
+                },
+                "bap_id": {
+                    "type": "string"
+                },
+                "bap_uri": {
+                    "type": "string"
+                },
+                "bpp_id": {
+                    "type": "string"
+                },
+                "bpp_uri": {
+                    "type": "string"
+                },
+                "domain": {
+                    "type": "string"
+                },
+                "location": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.Location"
+                },
+                "message_id": {
+                    "type": "string"
+                },
+                "timestamp": {
+                    "type": "string"
+                },
+                "transaction_id": {
+                    "type": "string"
+                },
+                "ttl": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.Country": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.Fulfillments": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.Items": {
+            "type": "object",
+            "properties": {
+                "category_ids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "creator": {
+                    "$ref": "#/definitions/response.Creator"
+                },
+                "descriptor": {
+                    "$ref": "#/definitions/response.ItemsDescriptor"
+                },
+                "fulfillment_ids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "id": {
+                    "type": "string"
+                },
+                "location_ids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "price": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.Price"
+                },
+                "quantity": {
+                    "$ref": "#/definitions/response.Quantity"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.Tags"
+                    }
+                },
+                "time": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.List": {
+            "type": "object",
+            "properties": {
+                "descriptor": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.TagsDescriptor"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.Location": {
+            "type": "object",
+            "properties": {
+                "city": {
+                    "$ref": "#/definitions/response.ContextCity"
+                },
+                "country": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.Country"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.Message": {
+            "type": "object",
+            "properties": {
+                "catalog": {
+                    "$ref": "#/definitions/response.Catalog"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.Price": {
+            "type": "object",
+            "properties": {
+                "currency": {
+                    "type": "string"
+                },
+                "maximum_value": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.State": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.Tags": {
+            "type": "object",
+            "properties": {
+                "descriptor": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.TagsDescriptor"
+                },
+                "list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.List"
+                    }
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.TagsDescriptor": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.City": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Context": {
+            "type": "object",
+            "properties": {
+                "action": {
+                    "type": "string"
+                },
+                "bap_id": {
+                    "type": "string"
+                },
+                "bap_uri": {
+                    "type": "string"
+                },
+                "bpp_id": {
+                    "type": "string"
+                },
+                "bpp_uri": {
+                    "type": "string"
+                },
+                "domain": {
+                    "type": "string"
+                },
+                "location": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Location"
+                },
+                "message_id": {
+                    "type": "string"
+                },
+                "timestamp": {
+                    "type": "string"
+                },
+                "transaction_id": {
+                    "type": "string"
+                },
+                "ttl": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Country": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Descriptor": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Fulfillments": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Items": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Tags"
+                    }
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.List": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Location": {
+            "type": "object",
+            "properties": {
+                "city": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.City"
+                },
+                "country": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Country"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Message": {
+            "type": "object",
+            "properties": {
+                "order": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Order"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Order": {
+            "type": "object",
+            "properties": {
+                "fulfillments": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Fulfillments"
+                    }
+                },
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Items"
+                    }
+                },
+                "provider": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Provider"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Provider": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Tags": {
+            "type": "object",
+            "properties": {
+                "descriptor": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Descriptor"
+                },
+                "list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.List"
+                    }
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Breakup": {
+            "type": "object",
+            "properties": {
+                "item": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Item"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.City": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Context": {
+            "type": "object",
+            "properties": {
+                "action": {
+                    "type": "string"
+                },
+                "bap_id": {
+                    "type": "string"
+                },
+                "bap_uri": {
+                    "type": "string"
+                },
+                "bpp_id": {
+                    "type": "string"
+                },
+                "bpp_uri": {
+                    "type": "string"
+                },
+                "domain": {
+                    "type": "string"
+                },
+                "location": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Location"
+                },
+                "message_id": {
+                    "type": "string"
+                },
+                "timestamp": {
+                    "type": "string"
+                },
+                "transaction_id": {
+                    "type": "string"
+                },
+                "ttl": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Country": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Descriptor": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Fulfillments": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Item": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "price": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Price"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Items": {
+            "type": "object",
+            "properties": {
+                "fulfillment_ids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "id": {
+                    "type": "string"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Tags"
+                    }
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.List": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Location": {
+            "type": "object",
+            "properties": {
+                "city": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.City"
+                },
+                "country": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Country"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Message": {
+            "type": "object",
+            "properties": {
+                "order": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Order"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Order": {
+            "type": "object",
+            "properties": {
+                "fulfillments": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Fulfillments"
+                    }
+                },
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Items"
+                    }
+                },
+                "provider": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Provider"
+                },
+                "quote": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Quote"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Price": {
+            "type": "object",
+            "properties": {
+                "currency": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Provider": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Quote": {
+            "type": "object",
+            "properties": {
+                "breakup": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Breakup"
+                    }
+                },
+                "price": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Price"
+                },
+                "ttl": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Tags": {
+            "type": "object",
+            "properties": {
+                "descriptor": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Descriptor"
+                },
+                "list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.List"
+                    }
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_request.City": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_request.Context": {
+            "type": "object",
+            "properties": {
+                "action": {
+                    "type": "string"
+                },
+                "bap_id": {
+                    "type": "string"
+                },
+                "bap_uri": {
+                    "type": "string"
+                },
+                "bpp_id": {
+                    "type": "string"
+                },
+                "bpp_uri": {
+                    "type": "string"
+                },
+                "domain": {
+                    "type": "string"
+                },
+                "location": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_request.Location"
+                },
+                "message_id": {
+                    "type": "string"
+                },
+                "timestamp": {
+                    "type": "string"
+                },
+                "transaction_id": {
+                    "type": "string"
+                },
+                "ttl": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_request.Country": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_request.Location": {
+            "type": "object",
+            "properties": {
+                "city": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_request.City"
+                },
+                "country": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_request.Country"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_request.Message": {
+            "type": "object",
+            "properties": {
+                "order": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_request.Order"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_request.Order": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Breakup": {
+            "type": "object",
+            "properties": {
+                "item": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Item"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.City": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Context": {
+            "type": "object",
+            "properties": {
+                "action": {
+                    "type": "string"
+                },
+                "bap_id": {
+                    "type": "string"
+                },
+                "bap_uri": {
+                    "type": "string"
+                },
+                "bpp_id": {
+                    "type": "string"
+                },
+                "bpp_uri": {
+                    "type": "string"
+                },
+                "domain": {
+                    "type": "string"
+                },
+                "location": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Location"
+                },
+                "message_id": {
+                    "type": "string"
+                },
+                "timestamp": {
+                    "type": "string"
+                },
+                "transaction_id": {
+                    "type": "string"
+                },
+                "ttl": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Country": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Descriptor": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Fulfillments": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "state": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.State"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Item": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "price": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Price"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Items": {
+            "type": "object",
+            "properties": {
+                "fulfillment_ids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "id": {
+                    "type": "string"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Tags"
+                    }
+                },
+                "time": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.List": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Location": {
+            "type": "object",
+            "properties": {
+                "city": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.City"
+                },
+                "country": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Country"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Message": {
+            "type": "object",
+            "properties": {
+                "order": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Order"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Order": {
+            "type": "object",
+            "properties": {
+                "fulfillments": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Fulfillments"
+                    }
+                },
+                "id": {
+                    "type": "string"
+                },
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Items"
+                    }
+                },
+                "payments": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Payments"
+                    }
+                },
+                "provider": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Provider"
+                },
+                "quote": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Quote"
+                },
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Params": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "string"
+                },
+                "currency": {
+                    "type": "string"
+                },
+                "transaction_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Payments": {
+            "type": "object",
+            "properties": {
+                "collected_by": {
+                    "type": "string"
+                },
+                "params": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Params"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "tags": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Tags"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Price": {
+            "type": "object",
+            "properties": {
+                "currency": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Provider": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Quote": {
+            "type": "object",
+            "properties": {
+                "breakup": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Breakup"
+                    }
+                },
+                "price": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Price"
+                },
+                "ttl": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.State": {
+            "type": "object",
+            "properties": {
+                "descriptor": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Descriptor"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Tags": {
+            "type": "object",
+            "properties": {
+                "descriptor": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Descriptor"
+                },
+                "list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.List"
+                    }
+                }
+            }
+        },
+        "job.AcademicQualification": {
+            "type": "string",
+            "enum": [
+                "None",
+                "Class-X",
+                "Class-XII",
+                "Diploma",
+                "Graduate",
+                "Post-Graduate"
+            ],
+            "x-enum-varnames": [
+                "AcademicQualificationNone",
+                "AcademicQualificationClassX",
+                "AcademicQualificationClassXII",
+                "AcademicQualificationDiploma",
+                "AcademicQualificationGraduate",
+                "AcademicQualificationPostGraduate"
+            ]
+        },
+        "job.Coordinates": {
+            "type": "object",
+            "properties": {
+                "coordinates": {
+                    "description": "longitude, latitude",
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    }
+                },
+                "type": {
+                    "description": "GeoJSON type, it shall be equal to 'Point'",
+                    "type": "string"
+                }
+            }
+        },
+        "job.CreateJobRequest": {
+            "type": "object",
+            "properties": {
+                "businessId": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "eligibility": {
+                    "$ref": "#/definitions/job.Eligibility"
+                },
+                "location": {
+                    "$ref": "#/definitions/job.Location"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "salaryRange": {
+                    "$ref": "#/definitions/job.SalaryRange"
+                },
+                "type": {
+                    "$ref": "#/definitions/job.JobType"
+                },
+                "vacancies": {
+                    "type": "integer"
+                },
+                "workDays": {
+                    "$ref": "#/definitions/job.WorkDays"
+                },
+                "workHours": {
+                    "$ref": "#/definitions/job.WorkHours"
+                }
+            }
+        },
+        "job.Document": {
+            "type": "string",
+            "enum": [
+                "aadhar_card",
+                "pan_card",
+                "driving_license",
+                "class_x_certificate",
+                "class_xii_certificate",
+                "diploma_certificate",
+                "graduation_certificate",
+                "post_grad_certificate",
+                "passport",
+                "other"
+            ],
+            "x-enum-varnames": [
+                "DocumentAadharCard",
+                "DocumentPanCard",
+                "DocumentDrivingLic",
+                "DocumentClassXCert",
+                "DocumentClassXIICertificate",
+                "DocumentDiplomaCertificate",
+                "DocumentGraduationCertificate",
+                "DocumentPostGradCertificate",
+                "DocumentPassport",
+                "DocumentOther"
+            ]
+        },
+        "job.Eligibility": {
+            "type": "object",
+            "properties": {
+                "academicQualification": {
+                    "$ref": "#/definitions/job.AcademicQualification"
+                },
+                "documentsRequired": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/job.Document"
+                    }
+                },
+                "gender": {
+                    "$ref": "#/definitions/job.Gender"
+                },
+                "yearsOfExperience": {
+                    "type": "integer"
+                }
+            }
+        },
+        "job.Gender": {
+            "type": "string",
+            "enum": [
+                "any",
+                "male",
+                "female"
+            ],
+            "x-enum-varnames": [
+                "GenderAny",
+                "GenderMale",
+                "GenderFemale"
+            ]
+        },
+        "job.GetJobApplicationsResponse": {
+            "type": "object",
+            "properties": {
+                "applicantDetails": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_database_mongodb_job-application.ApplicantDetails"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "status": {
+                    "$ref": "#/definitions/jobapplication.JobApplicationStatus"
+                }
+            }
+        },
+        "job.JobType": {
+            "type": "string",
+            "enum": [
+                "full-time",
+                "part-time",
+                "contract",
+                "internship"
+            ],
+            "x-enum-varnames": [
+                "JobTypeFullTime",
+                "JobTypePartTime",
+                "JobTypeContract",
+                "JobTypeInternship"
+            ]
+        },
+        "job.Location": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "areaCode": {
+                    "description": "Postal code, for example: '560102'",
+                    "type": "string"
+                },
+                "city": {
+                    "description": "STD code, for example: 'std:080'",
+                    "type": "string"
+                },
+                "coordinates": {
+                    "$ref": "#/definitions/job.Coordinates"
+                },
+                "state": {
+                    "description": "State code, for example: 'IN-KA'",
+                    "type": "string"
+                },
+                "street": {
+                    "type": "string"
+                }
+            }
+        },
+        "job.SalaryRange": {
+            "type": "object",
+            "properties": {
+                "max": {
+                    "type": "integer"
+                },
+                "min": {
+                    "type": "integer"
+                }
+            }
+        },
+        "job.WorkDays": {
+            "type": "object",
+            "properties": {
+                "end": {
+                    "type": "integer"
+                },
+                "start": {
+                    "type": "integer"
+                }
+            }
+        },
+        "job.WorkHours": {
+            "type": "object",
+            "properties": {
+                "end": {
+                    "type": "string"
+                },
+                "start": {
+                    "type": "string"
+                }
+            }
+        },
+        "jobapplication.JobApplicationStatus": {
+            "type": "string",
+            "enum": [
+                "APPLICATION_ACCEPTED",
+                "APPLICATION_REJECTED",
+                "ASSESSMENT_IN_PROGRESS",
+                "OFFER_REJECTED",
+                "OFFER_ACCEPTED",
+                "OFFER_EXTENDED",
+                "CANCELLED"
+            ],
+            "x-enum-varnames": [
+                "JobApplicationStatusApplicationAccepted",
+                "JobApplicationStatusApplicationRejected",
+                "JobApplicationStatusAssessmentInProgress",
+                "JobApplicationStatusOfferRejected",
+                "JobApplicationStatusOfferAccepted",
+                "JobApplicationStatusOfferExtended",
+                "JobApplicationStatusCancelled"
+            ]
+        },
+        "jobapplication.UpdateJobApplicationStatusRequest": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "description": "@Enum(APPLICATION_ACCEPTED, APPLICATION_REJECTED, ASSESSMENT_IN_PROGRESS, OFFER_REJECTED, OFFER_ACCEPTED, OFFER_EXTENDED, CANCELLED)",
+                    "type": "string"
+                }
+            }
+        },
+        "request.Breakup": {
+            "type": "object",
+            "properties": {
+                "item": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Item"
+                }
+            }
+        },
+        "request.CancelRequest": {
+            "type": "object",
+            "properties": {
+                "context": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_request.Context"
+                },
+                "message": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_request.Message"
+                }
+            }
+        },
+        "request.ConfirmRequest": {
+            "type": "object",
+            "properties": {
+                "context": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Context"
+                },
+                "message": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Message"
+                }
+            }
+        },
+        "request.Coordinates": {
+            "type": "object",
+            "properties": {
+                "latitude": {
+                    "type": "number"
+                },
+                "longitude": {
+                    "type": "number"
+                }
+            }
+        },
+        "request.InitRequest": {
+            "type": "object",
+            "properties": {
+                "context": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Context"
+                },
+                "message": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Message"
+                }
+            }
+        },
+        "request.Intent": {
+            "type": "object",
+            "properties": {
+                "item": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.Item"
+                },
+                "payment": {
+                    "$ref": "#/definitions/request.Payment"
+                },
+                "provider": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.Provider"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.Tags"
+                    }
+                }
+            }
+        },
+        "request.ItemDescriptor": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "request.ItemList": {
+            "type": "object",
+            "properties": {
+                "descriptor": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.Descriptor"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "request.ItemTags": {
+            "type": "object",
+            "properties": {
+                "descriptor": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.Descriptor"
+                },
+                "list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/request.ItemList"
+                    }
+                }
+            }
+        },
+        "request.Params": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "string"
+                },
+                "currency": {
+                    "type": "string"
+                },
+                "transaction_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "request.Payment": {
+            "type": "object",
+            "properties": {
+                "descriptor": {
+                    "$ref": "#/definitions/request.PaymentDescriptor"
+                },
+                "list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/request.PaymentList"
+                    }
+                }
+            }
+        },
+        "request.PaymentDescriptor": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "request.PaymentList": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "request.Payments": {
+            "type": "object",
+            "properties": {
+                "collected_by": {
+                    "type": "string"
+                },
+                "params": {
+                    "$ref": "#/definitions/request.Params"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "tags": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Tags"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "request.Price": {
+            "type": "object",
+            "properties": {
+                "currency": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "request.ProviderAreaCode": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "request.ProviderCity": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "request.ProviderDescriptor": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "request.ProviderLocations": {
+            "type": "object",
+            "properties": {
+                "areaCode": {
+                    "$ref": "#/definitions/request.ProviderAreaCode"
+                },
+                "city": {
+                    "$ref": "#/definitions/request.ProviderCity"
+                },
+                "coordinates": {
+                    "$ref": "#/definitions/request.Coordinates"
+                },
+                "state": {
+                    "$ref": "#/definitions/request.ProviderState"
+                }
+            }
+        },
+        "request.ProviderState": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "request.Quote": {
+            "type": "object",
+            "properties": {
+                "breakup": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/request.Breakup"
+                    }
+                },
+                "price": {
+                    "$ref": "#/definitions/request.Price"
+                },
+                "ttl": {
+                    "type": "string"
+                }
+            }
+        },
+        "request.SearchRequest": {
+            "type": "object",
+            "properties": {
+                "context": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.Context"
+                },
+                "message": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.Message"
+                }
+            }
+        },
+        "request.SelectRequest": {
+            "type": "object",
+            "properties": {
+                "context": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Context"
+                },
+                "message": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Message"
+                }
+            }
+        },
+        "request.State": {
+            "type": "object",
+            "properties": {
+                "descriptor": {
+                    "$ref": "#/definitions/request.StateDescriptor"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "request.StateDescriptor": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "request.StatusRequest": {
+            "type": "object",
+            "properties": {
+                "context": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_request.Context"
+                },
+                "message": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_request.Message"
+                }
+            }
+        },
+        "response.AreaCode": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "response.Available": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "type": "integer"
+                }
+            }
+        },
+        "response.CancelResponse": {
+            "type": "object",
+            "properties": {
+                "context": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Context"
+                },
+                "message": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Message"
+                }
+            }
+        },
+        "response.Catalog": {
+            "type": "object",
+            "properties": {
+                "descriptor": {
+                    "$ref": "#/definitions/response.CatalogDescriptor"
+                },
+                "providers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/response.Providers"
+                    }
+                }
+            }
+        },
+        "response.CatalogDescriptor": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "response.ConfirmResponse": {
+            "type": "object",
+            "properties": {
+                "context": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Context"
+                },
+                "message": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Message"
+                }
+            }
+        },
+        "response.ContextCity": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "response.Creator": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "city": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.City"
+                },
+                "contact": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.Contact"
+                },
+                "descriptor": {
+                    "$ref": "#/definitions/response.CreatorDescriptor"
+                },
+                "state": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.State"
+                }
+            }
+        },
+        "response.CreatorDescriptor": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "images": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/response.Images"
+                    }
+                },
+                "long_desc": {
+                    "type": "string"
+                },
+                "media": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/response.Media"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "short_desc": {
+                    "type": "string"
+                }
+            }
+        },
+        "response.Form": {
+            "type": "object",
+            "properties": {
+                "mime_type": {
+                    "type": "string"
+                },
+                "resubmit": {
+                    "type": "boolean"
+                },
+                "url": {
+                    "type": "string"
+                }
+            }
+        },
+        "response.Head": {
+            "type": "object",
+            "properties": {
+                "descriptor": {
+                    "$ref": "#/definitions/response.HeadDescriptor"
+                },
+                "headings": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "index": {
+                    "$ref": "#/definitions/response.Index"
+                }
+            }
+        },
+        "response.HeadDescriptor": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "response.Images": {
+            "type": "object",
+            "properties": {
+                "url": {
+                    "type": "string"
+                }
+            }
+        },
+        "response.Index": {
+            "type": "object",
+            "properties": {
+                "cur": {
+                    "type": "integer"
+                },
+                "max": {
+                    "type": "integer"
+                },
+                "min": {
+                    "type": "integer"
+                }
+            }
+        },
+        "response.InitResponse": {
+            "type": "object",
+            "properties": {
+                "context": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Context"
+                },
+                "message": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Message"
+                }
+            }
+        },
+        "response.ItemsDescriptor": {
+            "type": "object",
+            "properties": {
+                "images": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/response.Images"
+                    }
+                },
+                "long_desc": {
+                    "type": "string"
+                },
+                "media": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/response.Media"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "short_desc": {
+                    "type": "string"
+                }
+            }
+        },
+        "response.Locations": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "areaCode": {
+                    "$ref": "#/definitions/response.AreaCode"
+                },
+                "city": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.City"
+                },
+                "gps": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "state": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.State"
+                },
+                "street": {
+                    "type": "string"
+                }
+            }
+        },
+        "response.Media": {
+            "type": "object",
+            "properties": {
+                "mimetype": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            }
+        },
+        "response.Providers": {
+            "type": "object",
+            "properties": {
+                "descriptor": {
+                    "$ref": "#/definitions/response.ProvidersDescriptor"
+                },
+                "fulfillments": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.Fulfillments"
+                    }
+                },
+                "id": {
+                    "type": "string"
+                },
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.Items"
+                    }
+                },
+                "locations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/response.Locations"
+                    }
+                }
+            }
+        },
+        "response.ProvidersDescriptor": {
+            "type": "object",
+            "properties": {
+                "images": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/response.Images"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "short_desc": {
+                    "type": "string"
+                }
+            }
+        },
+        "response.Quantity": {
+            "type": "object",
+            "properties": {
+                "available": {
+                    "$ref": "#/definitions/response.Available"
+                }
+            }
+        },
+        "response.SearchResponse": {
+            "type": "object",
+            "properties": {
+                "context": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.Context"
+                },
+                "message": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.Message"
+                }
+            }
+        },
+        "response.SelectResponse": {
+            "type": "object",
+            "properties": {
+                "context": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Context"
+                },
+                "message": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Message"
+                }
+            }
+        },
+        "response.StatusResponse": {
+            "type": "object",
+            "properties": {
+                "context": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Context"
+                },
+                "message": {
+                    "$ref": "#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Message"
+                }
+            }
+        },
+        "response.Xinput": {
+            "type": "object",
+            "properties": {
+                "form": {
+                    "$ref": "#/definitions/response.Form"
+                },
+                "head": {
+                    "$ref": "#/definitions/response.Head"
+                },
+                "required": {
+                    "type": "boolean"
+                }
+            }
+        }
+    }
+}

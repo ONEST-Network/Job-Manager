@@ -1,0 +1,2861 @@
+definitions:
+  business.AddBusinessRequest:
+    properties:
+      description:
+        type: string
+      email:
+        type: string
+      gstIndexNumber:
+        type: string
+      id:
+        type: string
+      industry:
+        $ref: '#/definitions/business.Industry'
+      location:
+        $ref: '#/definitions/business.Location'
+      name:
+        type: string
+      phone:
+        type: string
+      pictureUrls:
+        items:
+          type: string
+        type: array
+    type: object
+  business.Coordinates:
+    properties:
+      coordinates:
+        description: longitude, latitude
+        items:
+          type: number
+        type: array
+      type:
+        description: GeoJSON type, it shall be equal to 'Point'
+        type: string
+    type: object
+  business.Industry:
+    enum:
+    - RetailAndEcommerce
+    - FoodAndBeverages
+    - HealthAndWellness
+    - EducationAndTraining
+    - ProfessionalServices
+    - Manufacturing
+    - HospitalityAndTourism
+    - ArtsAndEntertainment
+    - TechnologyAndSoftware
+    - ConstructionAndRealEstate
+    - TransportationAndLogistics
+    - AgricultureAndFarming
+    - FinanceAndInsurance
+    - EnergyAndUtilities
+    - NonProfitAndSocialEnterprise
+    - MediaAndPublishing
+    - Automotive
+    - FashionAndLifestyle
+    - SportsAndRecreation
+    - Other
+    type: string
+    x-enum-varnames:
+    - IndustryRetailAndEcommerce
+    - IndustryFoodAndBeverages
+    - IndustryHealthAndWellness
+    - IndustryEducationAndTraining
+    - IndustryProfessionalServices
+    - IndustryManufacturing
+    - IndustryHospitalityAndTourism
+    - IndustryArtsAndEntertainment
+    - IndustryTechnologyAndSoftware
+    - IndustryConstructionAndRealEstate
+    - IndustryTransportationAndLogistics
+    - IndustryAgricultureAndFarming
+    - IndustryFinanceAndInsurance
+    - IndustryEnergyAndUtilities
+    - IndustryNonProfitAndSocialEnterprise
+    - IndustryMediaAndPublishing
+    - IndustryAutomotive
+    - IndustryFashionAndLifestyle
+    - IndustrySportsAndRecreation
+    - IndustryOther
+  business.ListJobsResponse:
+    properties:
+      applicationIds:
+        items:
+          type: string
+        type: array
+      description:
+        type: string
+      eligibility:
+        $ref: '#/definitions/job.Eligibility'
+      id:
+        type: string
+      location:
+        $ref: '#/definitions/job.Location'
+      name:
+        type: string
+      salaryRange:
+        $ref: '#/definitions/job.SalaryRange'
+      type:
+        $ref: '#/definitions/job.JobType'
+      vacancies:
+        type: integer
+      workDays:
+        $ref: '#/definitions/job.WorkDays'
+      workHours:
+        $ref: '#/definitions/job.WorkHours'
+    type: object
+  business.Location:
+    properties:
+      address:
+        type: string
+      areaCode:
+        description: 'Postal code, for example: ''560102'''
+        type: string
+      city:
+        description: 'STD code, for example: ''std:080'''
+        type: string
+      coordinates:
+        $ref: '#/definitions/business.Coordinates'
+      state:
+        description: 'State code, for example: ''IN-KA'''
+        type: string
+      street:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_database_mongodb_job-application.ApplicantDetails:
+    properties:
+      age:
+        type: integer
+      documents:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_database_mongodb_job-application.Documents'
+      email:
+        type: string
+      experience:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_database_mongodb_job-application.Experience'
+      gender:
+        type: string
+      name:
+        type: string
+      phone:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_database_mongodb_job-application.Document:
+    properties:
+      type:
+        type: string
+      url:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_database_mongodb_job-application.Documents:
+    properties:
+      aadharCard:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_database_mongodb_job-application.Document'
+      drivingLicense:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_database_mongodb_job-application.Document'
+      panCard:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_database_mongodb_job-application.Document'
+      passport:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_database_mongodb_job-application.Document'
+      resume:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_database_mongodb_job-application.Document'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_database_mongodb_job-application.Experience:
+    properties:
+      years:
+        type: integer
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_request.City:
+    properties:
+      code:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_request.Context:
+    properties:
+      action:
+        type: string
+      bap_id:
+        type: string
+      bap_uri:
+        type: string
+      bpp_id:
+        type: string
+      bpp_uri:
+        type: string
+      domain:
+        type: string
+      location:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_request.Location'
+      message_id:
+        type: string
+      timestamp:
+        type: string
+      transaction_id:
+        type: string
+      ttl:
+        type: string
+      version:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_request.Country:
+    properties:
+      code:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_request.Location:
+    properties:
+      city:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_request.City'
+      country:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_request.Country'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_request.Message:
+    properties:
+      cancellation_reason_id:
+        type: string
+      order_id:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Breakup:
+    properties:
+      item:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Item'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.City:
+    properties:
+      code:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Context:
+    properties:
+      action:
+        type: string
+      bap_id:
+        type: string
+      bap_uri:
+        type: string
+      bpp_id:
+        type: string
+      bpp_uri:
+        type: string
+      domain:
+        type: string
+      location:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Location'
+      message_id:
+        type: string
+      timestamp:
+        type: string
+      transaction_id:
+        type: string
+      ttl:
+        type: string
+      version:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Country:
+    properties:
+      code:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Descriptor:
+    properties:
+      code:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Fulfillments:
+    properties:
+      id:
+        type: string
+      state:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.State'
+      tags:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Tags'
+        type: array
+      type:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Item:
+    properties:
+      id:
+        type: string
+      price:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Price'
+      title:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Items:
+    properties:
+      fulfillment_ids:
+        items:
+          type: string
+        type: array
+      id:
+        type: string
+      tags:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Tags'
+        type: array
+      time:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.List:
+    properties:
+      code:
+        type: string
+      value:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Location:
+    properties:
+      city:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.City'
+      country:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Country'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Message:
+    properties:
+      order:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Order'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Order:
+    properties:
+      fulfillments:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Fulfillments'
+        type: array
+      id:
+        type: string
+      items:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Items'
+        type: array
+      payments:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Payments'
+        type: array
+      provider:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Provider'
+      quote:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Quote'
+      status:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Params:
+    properties:
+      amount:
+        type: string
+      currency:
+        type: string
+      transaction_id:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Payments:
+    properties:
+      collected_by:
+        type: string
+      params:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Params'
+      status:
+        type: string
+      tags:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Tags'
+      type:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Price:
+    properties:
+      currency:
+        type: string
+      value:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Provider:
+    properties:
+      id:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Quote:
+    properties:
+      breakup:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Breakup'
+        type: array
+      price:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Price'
+      ttl:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.State:
+    properties:
+      descriptor:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Descriptor'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Tags:
+    properties:
+      descriptor:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Descriptor'
+      list:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.List'
+        type: array
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.City:
+    properties:
+      code:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Contact:
+    properties:
+      email:
+        type: string
+      phone:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Context:
+    properties:
+      action:
+        type: string
+      bap_id:
+        type: string
+      bap_uri:
+        type: string
+      bpp_id:
+        type: string
+      bpp_uri:
+        type: string
+      domain:
+        type: string
+      location:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Location'
+      message_id:
+        type: string
+      timestamp:
+        type: string
+      transaction_id:
+        type: string
+      ttl:
+        type: string
+      version:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Country:
+    properties:
+      code:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Creds:
+    properties:
+      descriptor:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.CredsDescriptor'
+      id:
+        type: string
+      type:
+        type: string
+      url:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.CredsDescriptor:
+    properties:
+      long_desc:
+        type: string
+      name:
+        type: string
+      short_desc:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Customer:
+    properties:
+      contact:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Contact'
+      person:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Person'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Fulfillments:
+    properties:
+      customer:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Customer'
+      id:
+        type: string
+      state:
+        $ref: '#/definitions/request.State'
+      type:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Item:
+    properties:
+      id:
+        type: string
+      price:
+        $ref: '#/definitions/request.Price'
+      title:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Items:
+    properties:
+      fulfillment_ids:
+        items:
+          type: string
+        type: array
+      id:
+        type: string
+      tags:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Tags'
+        type: array
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Languages:
+    properties:
+      name:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.List:
+    properties:
+      code:
+        type: string
+      value:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Location:
+    properties:
+      city:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.City'
+      country:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Country'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Message:
+    properties:
+      order:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Order'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Order:
+    properties:
+      fulfillments:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Fulfillments'
+        type: array
+      id:
+        type: string
+      items:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Items'
+        type: array
+      payments:
+        items:
+          $ref: '#/definitions/request.Payments'
+        type: array
+      provider:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Provider'
+      quote:
+        $ref: '#/definitions/request.Quote'
+      status:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Person:
+    properties:
+      age:
+        type: string
+      creds:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Creds'
+        type: array
+      gender:
+        type: string
+      languages:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Languages'
+        type: array
+      name:
+        type: string
+      skills:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Skills'
+        type: array
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Provider:
+    properties:
+      id:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Skills:
+    properties:
+      name:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Tags:
+    properties:
+      descriptor:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.TagsDescriptor'
+      list:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.List'
+        type: array
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.TagsDescriptor:
+    properties:
+      code:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Breakup:
+    properties:
+      item:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Item'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.City:
+    properties:
+      code:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Contact:
+    properties:
+      email:
+        type: string
+      phone:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Context:
+    properties:
+      action:
+        type: string
+      bap_id:
+        type: string
+      bap_uri:
+        type: string
+      bpp_id:
+        type: string
+      bpp_uri:
+        type: string
+      domain:
+        type: string
+      location:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Location'
+      message_id:
+        type: string
+      timestamp:
+        type: string
+      transaction_id:
+        type: string
+      ttl:
+        type: string
+      version:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Country:
+    properties:
+      code:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Creds:
+    properties:
+      descriptor:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.CredsDescriptor'
+      id:
+        type: string
+      type:
+        type: string
+      url:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.CredsDescriptor:
+    properties:
+      long_desc:
+        type: string
+      name:
+        type: string
+      short_desc:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Customer:
+    properties:
+      contact:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Contact'
+      person:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Person'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Fulfillments:
+    properties:
+      customer:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Customer'
+      id:
+        type: string
+      state:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.State'
+      type:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Item:
+    properties:
+      id:
+        type: string
+      price:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Price'
+      title:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Items:
+    properties:
+      fulfillment_ids:
+        items:
+          type: string
+        type: array
+      id:
+        type: string
+      tags:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Tags'
+        type: array
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Languages:
+    properties:
+      name:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.List:
+    properties:
+      code:
+        type: string
+      value:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Location:
+    properties:
+      city:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.City'
+      country:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Country'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Message:
+    properties:
+      order:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Order'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Order:
+    properties:
+      fulfillments:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Fulfillments'
+        type: array
+      id:
+        type: string
+      items:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Items'
+        type: array
+      payments:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Payments'
+        type: array
+      provider:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Provider'
+      quote:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Quote'
+      status:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Params:
+    properties:
+      amount:
+        type: string
+      currency:
+        type: string
+      transaction_id:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Payments:
+    properties:
+      collected_by:
+        type: string
+      params:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Params'
+      status:
+        type: string
+      tags:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Tags'
+      type:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Person:
+    properties:
+      age:
+        type: string
+      creds:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Creds'
+        type: array
+      gender:
+        type: string
+      languages:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Languages'
+        type: array
+      name:
+        type: string
+      skills:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Skills'
+        type: array
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Price:
+    properties:
+      currency:
+        type: string
+      value:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Provider:
+    properties:
+      id:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Quote:
+    properties:
+      breakup:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Breakup'
+        type: array
+      price:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Price'
+      ttl:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Skills:
+    properties:
+      name:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.State:
+    properties:
+      descriptor:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.StateDescriptor'
+      updated_at:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.StateDescriptor:
+    properties:
+      code:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Tags:
+    properties:
+      descriptor:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.TagsDescriptor'
+      list:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.List'
+        type: array
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.TagsDescriptor:
+    properties:
+      code:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.City:
+    properties:
+      code:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Contact:
+    properties:
+      email:
+        type: string
+      phone:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Context:
+    properties:
+      action:
+        type: string
+      bap_id:
+        type: string
+      bap_uri:
+        type: string
+      bpp_id:
+        type: string
+      bpp_uri:
+        type: string
+      domain:
+        type: string
+      location:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Location'
+      message_id:
+        type: string
+      timestamp:
+        type: string
+      transaction_id:
+        type: string
+      ttl:
+        type: string
+      version:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Country:
+    properties:
+      code:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Creds:
+    properties:
+      descriptor:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.CredsDescriptor'
+      id:
+        type: string
+      type:
+        type: string
+      url:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.CredsDescriptor:
+    properties:
+      long_desc:
+        type: string
+      name:
+        type: string
+      short_desc:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Customer:
+    properties:
+      contact:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Contact'
+      person:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Person'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Fulfillments:
+    properties:
+      customer:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Customer'
+      id:
+        type: string
+      type:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Items:
+    properties:
+      fulfillment_ids:
+        items:
+          type: string
+        type: array
+      id:
+        type: string
+      tags:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Tags'
+        type: array
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Languages:
+    properties:
+      name:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.List:
+    properties:
+      code:
+        type: string
+      value:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Location:
+    properties:
+      city:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.City'
+      country:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Country'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Message:
+    properties:
+      order:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Order'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Order:
+    properties:
+      fulfillments:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Fulfillments'
+        type: array
+      items:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Items'
+        type: array
+      provider:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Provider'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Person:
+    properties:
+      age:
+        type: string
+      creds:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Creds'
+        type: array
+      gender:
+        type: string
+      languages:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Languages'
+        type: array
+      name:
+        type: string
+      skills:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Skills'
+        type: array
+      tags:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Tags'
+        type: array
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Provider:
+    properties:
+      id:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Skills:
+    properties:
+      name:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Tags:
+    properties:
+      descriptor:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.TagsDescriptor'
+      list:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.List'
+        type: array
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.TagsDescriptor:
+    properties:
+      code:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Breakup:
+    properties:
+      item:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Item'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.City:
+    properties:
+      code:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Contact:
+    properties:
+      email:
+        type: string
+      phone:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Context:
+    properties:
+      action:
+        type: string
+      bap_id:
+        type: string
+      bap_uri:
+        type: string
+      bpp_id:
+        type: string
+      bpp_uri:
+        type: string
+      domain:
+        type: string
+      location:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Location'
+      message_id:
+        type: string
+      timestamp:
+        type: string
+      transaction_id:
+        type: string
+      ttl:
+        type: string
+      version:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Country:
+    properties:
+      code:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Creds:
+    properties:
+      descriptor:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.CredsDescriptor'
+      id:
+        type: string
+      type:
+        type: string
+      url:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.CredsDescriptor:
+    properties:
+      long_desc:
+        type: string
+      name:
+        type: string
+      short_desc:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Customer:
+    properties:
+      contact:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Contact'
+      person:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Person'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Fulfillments:
+    properties:
+      customer:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Customer'
+      id:
+        type: string
+      state:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.State'
+      type:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Item:
+    properties:
+      id:
+        type: string
+      price:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Price'
+      title:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Items:
+    properties:
+      fulfillment_ids:
+        items:
+          type: string
+        type: array
+      id:
+        type: string
+      tags:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Tags'
+        type: array
+      xinput:
+        $ref: '#/definitions/response.Xinput'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Languages:
+    properties:
+      name:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.List:
+    properties:
+      code:
+        type: string
+      value:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Location:
+    properties:
+      city:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.City'
+      country:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Country'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Message:
+    properties:
+      order:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Order'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Order:
+    properties:
+      fulfillments:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Fulfillments'
+        type: array
+      items:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Items'
+        type: array
+      payments:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Payments'
+        type: array
+      provider:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Provider'
+      quote:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Quote'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Payments:
+    properties:
+      collected_by:
+        type: string
+      status:
+        type: string
+      tags:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Tags'
+      type:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Person:
+    properties:
+      age:
+        type: string
+      creds:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Creds'
+        type: array
+      gender:
+        type: string
+      languages:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Languages'
+        type: array
+      name:
+        type: string
+      skills:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Skills'
+        type: array
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Price:
+    properties:
+      currency:
+        type: string
+      value:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Provider:
+    properties:
+      id:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Quote:
+    properties:
+      breakup:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Breakup'
+        type: array
+      price:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Price'
+      ttl:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Skills:
+    properties:
+      name:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.State:
+    properties:
+      descriptor:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.StateDescriptor'
+      updated_at:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.StateDescriptor:
+    properties:
+      code:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Tags:
+    properties:
+      descriptor:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.TagsDescriptor'
+      list:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.List'
+        type: array
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.TagsDescriptor:
+    properties:
+      code:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.City:
+    properties:
+      code:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.Context:
+    properties:
+      action:
+        type: string
+      bap_id:
+        type: string
+      bap_uri:
+        type: string
+      domain:
+        type: string
+      location:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.Location'
+      message_id:
+        type: string
+      timestamp:
+        type: string
+      transaction_id:
+        type: string
+      ttl:
+        type: string
+      version:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.Country:
+    properties:
+      code:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.Descriptor:
+    properties:
+      code:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.Item:
+    properties:
+      descriptor:
+        $ref: '#/definitions/request.ItemDescriptor'
+      item_tags:
+        items:
+          $ref: '#/definitions/request.ItemTags'
+        type: array
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.List:
+    properties:
+      descriptor:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.TagsDescriptor'
+      value:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.Location:
+    properties:
+      city:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.City'
+      country:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.Country'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.Message:
+    properties:
+      intent:
+        $ref: '#/definitions/request.Intent'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.Provider:
+    properties:
+      descriptor:
+        $ref: '#/definitions/request.ProviderDescriptor'
+      locations:
+        items:
+          $ref: '#/definitions/request.ProviderLocations'
+        type: array
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.Tags:
+    properties:
+      descriptor:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.TagsDescriptor'
+      list:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.List'
+        type: array
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.TagsDescriptor:
+    properties:
+      code:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.City:
+    properties:
+      code:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.Contact:
+    properties:
+      email:
+        type: string
+      phone:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.Context:
+    properties:
+      action:
+        type: string
+      bap_id:
+        type: string
+      bap_uri:
+        type: string
+      bpp_id:
+        type: string
+      bpp_uri:
+        type: string
+      domain:
+        type: string
+      location:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.Location'
+      message_id:
+        type: string
+      timestamp:
+        type: string
+      transaction_id:
+        type: string
+      ttl:
+        type: string
+      version:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.Country:
+    properties:
+      code:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.Fulfillments:
+    properties:
+      id:
+        type: string
+      type:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.Items:
+    properties:
+      category_ids:
+        items:
+          type: string
+        type: array
+      creator:
+        $ref: '#/definitions/response.Creator'
+      descriptor:
+        $ref: '#/definitions/response.ItemsDescriptor'
+      fulfillment_ids:
+        items:
+          type: string
+        type: array
+      id:
+        type: string
+      location_ids:
+        items:
+          type: string
+        type: array
+      price:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.Price'
+      quantity:
+        $ref: '#/definitions/response.Quantity'
+      tags:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.Tags'
+        type: array
+      time:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.List:
+    properties:
+      descriptor:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.TagsDescriptor'
+      value:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.Location:
+    properties:
+      city:
+        $ref: '#/definitions/response.ContextCity'
+      country:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.Country'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.Message:
+    properties:
+      catalog:
+        $ref: '#/definitions/response.Catalog'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.Price:
+    properties:
+      currency:
+        type: string
+      maximum_value:
+        type: string
+      value:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.State:
+    properties:
+      code:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.Tags:
+    properties:
+      descriptor:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.TagsDescriptor'
+      list:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.List'
+        type: array
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.TagsDescriptor:
+    properties:
+      code:
+        type: string
+      name:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.City:
+    properties:
+      code:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Context:
+    properties:
+      action:
+        type: string
+      bap_id:
+        type: string
+      bap_uri:
+        type: string
+      bpp_id:
+        type: string
+      bpp_uri:
+        type: string
+      domain:
+        type: string
+      location:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Location'
+      message_id:
+        type: string
+      timestamp:
+        type: string
+      transaction_id:
+        type: string
+      ttl:
+        type: string
+      version:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Country:
+    properties:
+      code:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Descriptor:
+    properties:
+      code:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Fulfillments:
+    properties:
+      id:
+        type: string
+      type:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Items:
+    properties:
+      id:
+        type: string
+      tags:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Tags'
+        type: array
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.List:
+    properties:
+      code:
+        type: string
+      value:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Location:
+    properties:
+      city:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.City'
+      country:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Country'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Message:
+    properties:
+      order:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Order'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Order:
+    properties:
+      fulfillments:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Fulfillments'
+        type: array
+      items:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Items'
+        type: array
+      provider:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Provider'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Provider:
+    properties:
+      id:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Tags:
+    properties:
+      descriptor:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Descriptor'
+      list:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.List'
+        type: array
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Breakup:
+    properties:
+      item:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Item'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.City:
+    properties:
+      code:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Context:
+    properties:
+      action:
+        type: string
+      bap_id:
+        type: string
+      bap_uri:
+        type: string
+      bpp_id:
+        type: string
+      bpp_uri:
+        type: string
+      domain:
+        type: string
+      location:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Location'
+      message_id:
+        type: string
+      timestamp:
+        type: string
+      transaction_id:
+        type: string
+      ttl:
+        type: string
+      version:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Country:
+    properties:
+      code:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Descriptor:
+    properties:
+      code:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Fulfillments:
+    properties:
+      id:
+        type: string
+      type:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Item:
+    properties:
+      id:
+        type: string
+      price:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Price'
+      title:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Items:
+    properties:
+      fulfillment_ids:
+        items:
+          type: string
+        type: array
+      id:
+        type: string
+      tags:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Tags'
+        type: array
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.List:
+    properties:
+      code:
+        type: string
+      value:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Location:
+    properties:
+      city:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.City'
+      country:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Country'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Message:
+    properties:
+      order:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Order'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Order:
+    properties:
+      fulfillments:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Fulfillments'
+        type: array
+      items:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Items'
+        type: array
+      provider:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Provider'
+      quote:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Quote'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Price:
+    properties:
+      currency:
+        type: string
+      value:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Provider:
+    properties:
+      id:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Quote:
+    properties:
+      breakup:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Breakup'
+        type: array
+      price:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Price'
+      ttl:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Tags:
+    properties:
+      descriptor:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Descriptor'
+      list:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.List'
+        type: array
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_request.City:
+    properties:
+      code:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_request.Context:
+    properties:
+      action:
+        type: string
+      bap_id:
+        type: string
+      bap_uri:
+        type: string
+      bpp_id:
+        type: string
+      bpp_uri:
+        type: string
+      domain:
+        type: string
+      location:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_request.Location'
+      message_id:
+        type: string
+      timestamp:
+        type: string
+      transaction_id:
+        type: string
+      ttl:
+        type: string
+      version:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_request.Country:
+    properties:
+      code:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_request.Location:
+    properties:
+      city:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_request.City'
+      country:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_request.Country'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_request.Message:
+    properties:
+      order:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_request.Order'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_request.Order:
+    properties:
+      id:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Breakup:
+    properties:
+      item:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Item'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.City:
+    properties:
+      code:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Context:
+    properties:
+      action:
+        type: string
+      bap_id:
+        type: string
+      bap_uri:
+        type: string
+      bpp_id:
+        type: string
+      bpp_uri:
+        type: string
+      domain:
+        type: string
+      location:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Location'
+      message_id:
+        type: string
+      timestamp:
+        type: string
+      transaction_id:
+        type: string
+      ttl:
+        type: string
+      version:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Country:
+    properties:
+      code:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Descriptor:
+    properties:
+      code:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Fulfillments:
+    properties:
+      id:
+        type: string
+      state:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.State'
+      type:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Item:
+    properties:
+      id:
+        type: string
+      price:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Price'
+      title:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Items:
+    properties:
+      fulfillment_ids:
+        items:
+          type: string
+        type: array
+      id:
+        type: string
+      tags:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Tags'
+        type: array
+      time:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.List:
+    properties:
+      code:
+        type: string
+      value:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Location:
+    properties:
+      city:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.City'
+      country:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Country'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Message:
+    properties:
+      order:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Order'
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Order:
+    properties:
+      fulfillments:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Fulfillments'
+        type: array
+      id:
+        type: string
+      items:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Items'
+        type: array
+      payments:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Payments'
+        type: array
+      provider:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Provider'
+      quote:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Quote'
+      status:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Params:
+    properties:
+      amount:
+        type: string
+      currency:
+        type: string
+      transaction_id:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Payments:
+    properties:
+      collected_by:
+        type: string
+      params:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Params'
+      status:
+        type: string
+      tags:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Tags'
+      type:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Price:
+    properties:
+      currency:
+        type: string
+      value:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Provider:
+    properties:
+      id:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Quote:
+    properties:
+      breakup:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Breakup'
+        type: array
+      price:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Price'
+      ttl:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.State:
+    properties:
+      descriptor:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Descriptor'
+      updated_at:
+        type: string
+    type: object
+  github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Tags:
+    properties:
+      descriptor:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Descriptor'
+      list:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.List'
+        type: array
+    type: object
+  job.AcademicQualification:
+    enum:
+    - None
+    - Class-X
+    - Class-XII
+    - Diploma
+    - Graduate
+    - Post-Graduate
+    type: string
+    x-enum-varnames:
+    - AcademicQualificationNone
+    - AcademicQualificationClassX
+    - AcademicQualificationClassXII
+    - AcademicQualificationDiploma
+    - AcademicQualificationGraduate
+    - AcademicQualificationPostGraduate
+  job.Coordinates:
+    properties:
+      coordinates:
+        description: longitude, latitude
+        items:
+          type: number
+        type: array
+      type:
+        description: GeoJSON type, it shall be equal to 'Point'
+        type: string
+    type: object
+  job.CreateJobRequest:
+    properties:
+      businessId:
+        type: string
+      description:
+        type: string
+      eligibility:
+        $ref: '#/definitions/job.Eligibility'
+      location:
+        $ref: '#/definitions/job.Location'
+      name:
+        type: string
+      salaryRange:
+        $ref: '#/definitions/job.SalaryRange'
+      type:
+        $ref: '#/definitions/job.JobType'
+      vacancies:
+        type: integer
+      workDays:
+        $ref: '#/definitions/job.WorkDays'
+      workHours:
+        $ref: '#/definitions/job.WorkHours'
+    type: object
+  job.Document:
+    enum:
+    - aadhar_card
+    - pan_card
+    - driving_license
+    - class_x_certificate
+    - class_xii_certificate
+    - diploma_certificate
+    - graduation_certificate
+    - post_grad_certificate
+    - passport
+    - other
+    type: string
+    x-enum-varnames:
+    - DocumentAadharCard
+    - DocumentPanCard
+    - DocumentDrivingLic
+    - DocumentClassXCert
+    - DocumentClassXIICertificate
+    - DocumentDiplomaCertificate
+    - DocumentGraduationCertificate
+    - DocumentPostGradCertificate
+    - DocumentPassport
+    - DocumentOther
+  job.Eligibility:
+    properties:
+      academicQualification:
+        $ref: '#/definitions/job.AcademicQualification'
+      documentsRequired:
+        items:
+          $ref: '#/definitions/job.Document'
+        type: array
+      gender:
+        $ref: '#/definitions/job.Gender'
+      yearsOfExperience:
+        type: integer
+    type: object
+  job.Gender:
+    enum:
+    - any
+    - male
+    - female
+    type: string
+    x-enum-varnames:
+    - GenderAny
+    - GenderMale
+    - GenderFemale
+  job.GetJobApplicationsResponse:
+    properties:
+      applicantDetails:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_database_mongodb_job-application.ApplicantDetails'
+      id:
+        type: string
+      status:
+        $ref: '#/definitions/jobapplication.JobApplicationStatus'
+    type: object
+  job.JobType:
+    enum:
+    - full-time
+    - part-time
+    - contract
+    - internship
+    type: string
+    x-enum-varnames:
+    - JobTypeFullTime
+    - JobTypePartTime
+    - JobTypeContract
+    - JobTypeInternship
+  job.Location:
+    properties:
+      address:
+        type: string
+      areaCode:
+        description: 'Postal code, for example: ''560102'''
+        type: string
+      city:
+        description: 'STD code, for example: ''std:080'''
+        type: string
+      coordinates:
+        $ref: '#/definitions/job.Coordinates'
+      state:
+        description: 'State code, for example: ''IN-KA'''
+        type: string
+      street:
+        type: string
+    type: object
+  job.SalaryRange:
+    properties:
+      max:
+        type: integer
+      min:
+        type: integer
+    type: object
+  job.WorkDays:
+    properties:
+      end:
+        type: integer
+      start:
+        type: integer
+    type: object
+  job.WorkHours:
+    properties:
+      end:
+        type: string
+      start:
+        type: string
+    type: object
+  jobapplication.JobApplicationStatus:
+    enum:
+    - APPLICATION_ACCEPTED
+    - APPLICATION_REJECTED
+    - ASSESSMENT_IN_PROGRESS
+    - OFFER_REJECTED
+    - OFFER_ACCEPTED
+    - OFFER_EXTENDED
+    - CANCELLED
+    type: string
+    x-enum-varnames:
+    - JobApplicationStatusApplicationAccepted
+    - JobApplicationStatusApplicationRejected
+    - JobApplicationStatusAssessmentInProgress
+    - JobApplicationStatusOfferRejected
+    - JobApplicationStatusOfferAccepted
+    - JobApplicationStatusOfferExtended
+    - JobApplicationStatusCancelled
+  jobapplication.UpdateJobApplicationStatusRequest:
+    properties:
+      status:
+        description: '@Enum(APPLICATION_ACCEPTED, APPLICATION_REJECTED, ASSESSMENT_IN_PROGRESS,
+          OFFER_REJECTED, OFFER_ACCEPTED, OFFER_EXTENDED, CANCELLED)'
+        type: string
+    type: object
+  request.Breakup:
+    properties:
+      item:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Item'
+    type: object
+  request.CancelRequest:
+    properties:
+      context:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_request.Context'
+      message:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_request.Message'
+    type: object
+  request.ConfirmRequest:
+    properties:
+      context:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Context'
+      message:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Message'
+    type: object
+  request.Coordinates:
+    properties:
+      latitude:
+        type: number
+      longitude:
+        type: number
+    type: object
+  request.InitRequest:
+    properties:
+      context:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Context'
+      message:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_request.Message'
+    type: object
+  request.Intent:
+    properties:
+      item:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.Item'
+      payment:
+        $ref: '#/definitions/request.Payment'
+      provider:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.Provider'
+      tags:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.Tags'
+        type: array
+    type: object
+  request.ItemDescriptor:
+    properties:
+      name:
+        type: string
+    type: object
+  request.ItemList:
+    properties:
+      descriptor:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.Descriptor'
+      value:
+        type: string
+    type: object
+  request.ItemTags:
+    properties:
+      descriptor:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.Descriptor'
+      list:
+        items:
+          $ref: '#/definitions/request.ItemList'
+        type: array
+    type: object
+  request.Params:
+    properties:
+      amount:
+        type: string
+      currency:
+        type: string
+      transaction_id:
+        type: string
+    type: object
+  request.Payment:
+    properties:
+      descriptor:
+        $ref: '#/definitions/request.PaymentDescriptor'
+      list:
+        items:
+          $ref: '#/definitions/request.PaymentList'
+        type: array
+    type: object
+  request.PaymentDescriptor:
+    properties:
+      code:
+        type: string
+      name:
+        type: string
+    type: object
+  request.PaymentList:
+    properties:
+      code:
+        type: string
+      value:
+        type: string
+    type: object
+  request.Payments:
+    properties:
+      collected_by:
+        type: string
+      params:
+        $ref: '#/definitions/request.Params'
+      status:
+        type: string
+      tags:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_request.Tags'
+      type:
+        type: string
+    type: object
+  request.Price:
+    properties:
+      currency:
+        type: string
+      value:
+        type: string
+    type: object
+  request.ProviderAreaCode:
+    properties:
+      code:
+        type: string
+    type: object
+  request.ProviderCity:
+    properties:
+      code:
+        type: string
+    type: object
+  request.ProviderDescriptor:
+    properties:
+      name:
+        type: string
+    type: object
+  request.ProviderLocations:
+    properties:
+      areaCode:
+        $ref: '#/definitions/request.ProviderAreaCode'
+      city:
+        $ref: '#/definitions/request.ProviderCity'
+      coordinates:
+        $ref: '#/definitions/request.Coordinates'
+      state:
+        $ref: '#/definitions/request.ProviderState'
+    type: object
+  request.ProviderState:
+    properties:
+      code:
+        type: string
+    type: object
+  request.Quote:
+    properties:
+      breakup:
+        items:
+          $ref: '#/definitions/request.Breakup'
+        type: array
+      price:
+        $ref: '#/definitions/request.Price'
+      ttl:
+        type: string
+    type: object
+  request.SearchRequest:
+    properties:
+      context:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.Context'
+      message:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_request.Message'
+    type: object
+  request.SelectRequest:
+    properties:
+      context:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Context'
+      message:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_request.Message'
+    type: object
+  request.State:
+    properties:
+      descriptor:
+        $ref: '#/definitions/request.StateDescriptor'
+      updated_at:
+        type: string
+    type: object
+  request.StateDescriptor:
+    properties:
+      code:
+        type: string
+    type: object
+  request.StatusRequest:
+    properties:
+      context:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_request.Context'
+      message:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_request.Message'
+    type: object
+  response.AreaCode:
+    properties:
+      code:
+        type: string
+    type: object
+  response.Available:
+    properties:
+      count:
+        type: integer
+    type: object
+  response.CancelResponse:
+    properties:
+      context:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Context'
+      message:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_cancel_response.Message'
+    type: object
+  response.Catalog:
+    properties:
+      descriptor:
+        $ref: '#/definitions/response.CatalogDescriptor'
+      providers:
+        items:
+          $ref: '#/definitions/response.Providers'
+        type: array
+    type: object
+  response.CatalogDescriptor:
+    properties:
+      name:
+        type: string
+    type: object
+  response.ConfirmResponse:
+    properties:
+      context:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Context'
+      message:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_confirm_response.Message'
+    type: object
+  response.ContextCity:
+    properties:
+      code:
+        type: string
+    type: object
+  response.Creator:
+    properties:
+      address:
+        type: string
+      city:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.City'
+      contact:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.Contact'
+      descriptor:
+        $ref: '#/definitions/response.CreatorDescriptor'
+      state:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.State'
+    type: object
+  response.CreatorDescriptor:
+    properties:
+      code:
+        type: string
+      images:
+        items:
+          $ref: '#/definitions/response.Images'
+        type: array
+      long_desc:
+        type: string
+      media:
+        items:
+          $ref: '#/definitions/response.Media'
+        type: array
+      name:
+        type: string
+      short_desc:
+        type: string
+    type: object
+  response.Form:
+    properties:
+      mime_type:
+        type: string
+      resubmit:
+        type: boolean
+      url:
+        type: string
+    type: object
+  response.Head:
+    properties:
+      descriptor:
+        $ref: '#/definitions/response.HeadDescriptor'
+      headings:
+        items:
+          type: string
+        type: array
+      index:
+        $ref: '#/definitions/response.Index'
+    type: object
+  response.HeadDescriptor:
+    properties:
+      name:
+        type: string
+    type: object
+  response.Images:
+    properties:
+      url:
+        type: string
+    type: object
+  response.Index:
+    properties:
+      cur:
+        type: integer
+      max:
+        type: integer
+      min:
+        type: integer
+    type: object
+  response.InitResponse:
+    properties:
+      context:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Context'
+      message:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_init_response.Message'
+    type: object
+  response.ItemsDescriptor:
+    properties:
+      images:
+        items:
+          $ref: '#/definitions/response.Images'
+        type: array
+      long_desc:
+        type: string
+      media:
+        items:
+          $ref: '#/definitions/response.Media'
+        type: array
+      name:
+        type: string
+      short_desc:
+        type: string
+    type: object
+  response.Locations:
+    properties:
+      address:
+        type: string
+      areaCode:
+        $ref: '#/definitions/response.AreaCode'
+      city:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.City'
+      gps:
+        type: string
+      id:
+        type: string
+      state:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.State'
+      street:
+        type: string
+    type: object
+  response.Media:
+    properties:
+      mimetype:
+        type: string
+      url:
+        type: string
+    type: object
+  response.Providers:
+    properties:
+      descriptor:
+        $ref: '#/definitions/response.ProvidersDescriptor'
+      fulfillments:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.Fulfillments'
+        type: array
+      id:
+        type: string
+      items:
+        items:
+          $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.Items'
+        type: array
+      locations:
+        items:
+          $ref: '#/definitions/response.Locations'
+        type: array
+    type: object
+  response.ProvidersDescriptor:
+    properties:
+      images:
+        items:
+          $ref: '#/definitions/response.Images'
+        type: array
+      name:
+        type: string
+      short_desc:
+        type: string
+    type: object
+  response.Quantity:
+    properties:
+      available:
+        $ref: '#/definitions/response.Available'
+    type: object
+  response.SearchResponse:
+    properties:
+      context:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.Context'
+      message:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_search_response.Message'
+    type: object
+  response.SelectResponse:
+    properties:
+      context:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Context'
+      message:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_select_response.Message'
+    type: object
+  response.StatusResponse:
+    properties:
+      context:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Context'
+      message:
+        $ref: '#/definitions/github_com_ONEST-Network_Job-Manager-Adapter_pkg_types_payload_onest_status_response.Message'
+    type: object
+  response.Xinput:
+    properties:
+      form:
+        $ref: '#/definitions/response.Form'
+      head:
+        $ref: '#/definitions/response.Head'
+      required:
+        type: boolean
+    type: object
+info:
+  contact: {}
+paths:
+  /business/{id}/jobs:
+    get:
+      consumes:
+      - application/json
+      description: List jobs for a business
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/business.ListJobsResponse'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: List Jobs
+      tags:
+      - Business
+  /business/add:
+    post:
+      consumes:
+      - application/json
+      description: Add a business
+      parameters:
+      - description: request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/business.AddBusinessRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Add business
+      tags:
+      - Business
+  /cancel:
+    post:
+      consumes:
+      - application/json
+      description: Cancel job application
+      parameters:
+      - description: request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/request.CancelRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.CancelResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Cancel job application
+      tags:
+      - ONEST Network
+  /confirm:
+    post:
+      consumes:
+      - application/json
+      description: Confirm job application submission
+      parameters:
+      - description: request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/request.ConfirmRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ConfirmResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Confirm job application submission
+      tags:
+      - ONEST Network
+  /init:
+    post:
+      consumes:
+      - application/json
+      description: Initialize job application
+      parameters:
+      - description: request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/request.InitRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.InitResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Initialize job application
+      tags:
+      - ONEST Network
+  /job-application/{id}/status:
+    post:
+      consumes:
+      - application/json
+      description: Update a job application's status
+      parameters:
+      - description: Job Application ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/jobapplication.UpdateJobApplicationStatusRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Update job application status
+      tags:
+      - Job Application
+  /job/{id}/applications:
+    get:
+      consumes:
+      - application/json
+      description: Get job applications
+      parameters:
+      - description: Job ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/job.GetJobApplicationsResponse'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Get job applications
+      tags:
+      - Job
+  /job/create:
+    post:
+      consumes:
+      - application/json
+      description: Create a job posting
+      parameters:
+      - description: request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/job.CreateJobRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Create job
+      tags:
+      - Job
+  /search:
+    post:
+      consumes:
+      - application/json
+      description: Send jobs
+      parameters:
+      - description: request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/request.SearchRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.SearchResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Send jobs
+      tags:
+      - ONEST Network
+  /select:
+    post:
+      consumes:
+      - application/json
+      description: Send job fulfillment
+      parameters:
+      - description: request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/request.SelectRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.SelectResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Send job fulfillment
+      tags:
+      - ONEST Network
+  /status:
+    post:
+      consumes:
+      - application/json
+      description: Send job application current status
+      parameters:
+      - description: request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/request.StatusRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.StatusResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Send job application current status
+      tags:
+      - ONEST Network
+swagger: "2.0"
