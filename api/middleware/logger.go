@@ -7,58 +7,37 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-// DefaultStructuredLogger logs a gin HTTP request in JSON format. Uses the
-// default logger from rs/zerolog.
-func DefaultStructuredLogger() gin.HandlerFunc {
-	return StructuredLogger(&logrus.Logger{})
-}
-
-// StructuredLogger logs a gin HTTP request in JSON format. Allows to set the
-// logger for testing purposes.
-func StructuredLogger(logger *logrus.Logger) gin.HandlerFunc {
+// LoggerMiddleware logs request information
+func LoggerMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
-
-		start := time.Now() // Start timer
+		// Start timer
+		start := time.Now()
 		path := c.Request.URL.Path
-		raw := c.Request.URL.RawQuery
 
 		// Process request
 		c.Next()
 
-		// Fill the params
-		param := gin.LogFormatterParams{}
+		// Log request
+		latency := time.Since(start)
+		statusCode := c.Writer.Status()
+		clientIP := c.ClientIP()
+		method := c.Request.Method
 
-		param.TimeStamp = time.Now() // Stop timer
-		param.Latency = param.TimeStamp.Sub(start)
-		if param.Latency > time.Minute {
-			param.Latency = param.Latency.Truncate(time.Second)
-		}
+		entry := logrus.WithFields(logrus.Fields{
+			"status":     statusCode,
+			"latency":    latency,
+			"client_ip":  clientIP,
+			"method":     method,
+			"path":       path,
+			"request_id": c.Writer.Header().Get("X-Request-Id"),
+		})
 
-		param.ClientIP = c.ClientIP()
-		param.Method = c.Request.Method
-		param.StatusCode = c.Writer.Status()
-		param.ErrorMessage = c.Errors.ByType(gin.ErrorTypePrivate).String()
-		param.BodySize = c.Writer.Size()
-		if raw != "" {
-			path = path + "?" + raw
-		}
-		param.Path = path
-
-		logFields := logrus.Fields{
-			"status":    param.StatusCode,
-			"method":    param.Method,
-			"path":      param.Path,
-			"client_ip": param.ClientIP,
-			"latency":   param.Latency.String(),
-			"body_size": param.BodySize,
-			"error":     param.ErrorMessage,
-		}
-
-		if c.Writer.Status() >= 500 {
-			logrus.WithFields(logFields).Error()
+		if statusCode >= 500 {
+			entry.Error("Server error")
+		} else if statusCode >= 400 {
+			entry.Warn("Client error")
 		} else {
-			logrus.WithFields(logFields).Info()
+			entry.Info("Request processed")
 		}
-
 	}
 }
