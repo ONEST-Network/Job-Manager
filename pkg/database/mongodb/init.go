@@ -16,6 +16,8 @@ const (
 	BusinessCollection           = "business"
 	JobApplicationCollection     = "job-application"
 	InitJobApplicationCollection = "init-job-application"
+	SchemeCollection             = "scheme"
+	SchemeApplicationCollection  = "scheme-application"
 )
 
 // MongoClient structure contains all the database collections and the instance of the database
@@ -26,6 +28,8 @@ type MongoClient struct {
 	BusinessCollection           *mongo.Collection
 	JobApplicationCollection     *mongo.Collection
 	InitJobApplicationCollection *mongo.Collection
+	SchemeCollection             *mongo.Collection
+	SchemeApplicationCollection  *mongo.Collection
 }
 
 var (
@@ -50,6 +54,8 @@ func NewMongoClient() (*MongoClient, error) {
 		BusinessCollection:           database.Collection(BusinessCollection),
 		JobApplicationCollection:     database.Collection(JobApplicationCollection),
 		InitJobApplicationCollection: database.Collection(InitJobApplicationCollection),
+		SchemeCollection:             database.Collection(SchemeCollection),
+		SchemeApplicationCollection:  database.Collection(SchemeApplicationCollection),
 		Client:                       client,
 	}, nil
 }
