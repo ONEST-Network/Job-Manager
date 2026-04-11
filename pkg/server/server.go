@@ -13,6 +13,8 @@ import (
 	dbInitJobApplication "github.com/ONEST-Network/Job-Manager-Adapter/pkg/database/mongodb/init-job-application"
 	dbJob "github.com/ONEST-Network/Job-Manager-Adapter/pkg/database/mongodb/job"
 	dbJobApplication "github.com/ONEST-Network/Job-Manager-Adapter/pkg/database/mongodb/job-application"
+	dbScheme "github.com/ONEST-Network/Job-Manager-Adapter/pkg/database/mongodb/scheme"
+	dbSchemeApplication "github.com/ONEST-Network/Job-Manager-Adapter/pkg/database/mongodb/scheme-application"
 )
 
 func SetupServer(clients *clients.Clients) *gin.Engine {
@@ -40,10 +42,13 @@ func SetupServer(clients *clients.Clients) *gin.Engine {
 	jobApplicationRouter := server.Group("/job-application")
 	routes.JobApplicationRouter(jobApplicationRouter, clients)
 
+	schemeRouter := server.Group("/scheme")
+	routes.SchemeRouter(schemeRouter, clients)
+
 	return server
 }
 
-func InitMongoDB() (*dbBusiness.Dao, *dbJob.Dao, *dbJobApplication.Dao, *dbInitJobApplication.Dao) {
+func InitMongoDB() (*dbBusiness.Dao, *dbJob.Dao, *dbJobApplication.Dao, *dbInitJobApplication.Dao, *dbScheme.Dao, *dbSchemeApplication.Dao) {
 	var err error
 
 	// Initialize mongodb clients
@@ -58,6 +63,8 @@ func InitMongoDB() (*dbBusiness.Dao, *dbJob.Dao, *dbJobApplication.Dao, *dbInitJ
 	job := dbJob.NewJobDao(mongodb.Client.JobCollection)
 	jobApplication := dbJobApplication.NewJobApplicationDao(mongodb.Client.JobApplicationCollection)
 	initJobApplication := dbInitJobApplication.NewInitJobApplicationDao(mongodb.Client.InitJobApplicationCollection)
+	scheme := dbScheme.NewSchemeDao(mongodb.Client.SchemeCollection)
+	schemeApplication := dbSchemeApplication.NewSchemeApplicationDao(mongodb.Client.SchemeApplicationCollection)
 
-	return business, job, jobApplication, initJobApplication
+	return business, job, jobApplication, initJobApplication, scheme, schemeApplication
 }
